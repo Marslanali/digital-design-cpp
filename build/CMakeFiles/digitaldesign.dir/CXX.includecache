@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arslan/CLionProjects/digitaldesign/main.cpp
+math.h
+-
+algorithm
+-
+boost/algorithm/string.hpp
+-
+fstream
+-
+iostream
+-
+iterator
+-
+memory
+-
+vector
+-
+string
+-
+stdio.h
+-
+stdlib.h
+-
+
