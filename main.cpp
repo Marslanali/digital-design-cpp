@@ -306,54 +306,110 @@ int main(int argc, char **argv) {
   std::cout << std::endl;
   std::cout << std::endl;
   std::cout << std::endl;
-  ////////////////////////////////// AND and XOR operation for second XOR output  ///////////////////////////////
 
-  int a = 2;
-  int b = 67;
-  int b1 = 64;
+  ////////////////////////////////// AND and XOR operation for rest of  XOR output  ///////////////////////////////
+  // gates index and save them in respective arrays start from here
+  int in_xor=0;
+  int in_and=0;
+  std::cout<< "XOR/BLOCKS: " << std::endl;
+  for (int k = 0; k < 60; ++k) {
+    int binary3 = xor_input1_wires[xor_input1_wires_indexes[in_xor]] ^ xor_input2_wires_indexes[in_xor];  // 0 mean index no 314
+    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[in_xor], binary3);
+    std::cout << xor_input1_wires_indexes[in_xor] << " " << xor_input2_wires_indexes[in_xor] << " " << xor_output_wires_indexes[in_xor] << " " << std::endl;
 
-  int s = 2;
-  int r = 68;
-  int c1 = 0;
+    int binary4 = and_input1_wires[and_input1_wires_indexes[in_and]] & and_input1_wires[and_input1_wires_indexes[in_and]];  // 0 mean index no 314
+    and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[in_and], binary4);
+    std::cout << and_input1_wires_indexes[in_and] << " " << and_input2_wires_indexes[in_and] << " " << and_output_wires_indexes[in_and] << " " << std::endl;
 
-  int c2 = 70;
-  int c4 = 68;
-  int c3 = 1;
+    in_xor+=1;
+    in_and+=1;
 
-  for (int i = 2; i < 6; ++i) {
-    std::cout << std::endl;
-    std::cout << "AND/XOR Block: " << i << " " << std::endl;
-    int binary3 = inv_output_wires[inv_output_wires_indexes[a]] ^ xor_output_wires[xor_output_wires_indexes[b]];  // 0 mean index no 314
-    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[b + 3], binary3);
-    std::cout << inv_output_wires_indexes[a] << " " << xor_output_wires_indexes[67] << " " << xor_output_wires_indexes[b + 3] << std::endl;
+    int binary5 = xor_input1_wires[xor_input1_wires_indexes[in_xor]] ^ xor_input2_wires_indexes[in_xor];  // 0 mean index no 314
+    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[in_xor], binary5);
+    std::cout << xor_input1_wires_indexes[in_xor] << " " << xor_input2_wires_indexes[in_xor] << " " << xor_output_wires_indexes[in_xor] << " " << std::endl;
 
-    int binary4 = xor_output_wires[xor_output_wires_indexes[b + 3]] & xor_output_wires[xor_output_wires_indexes[b1 + 4]];  // 0 mean index no 314
-    and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[s], binary4);
-    std::cout << xor_output_wires_indexes[b + 3] << " " << xor_output_wires_indexes[b1 + 4] << " " << and_output_wires_indexes[s] << std::endl;
+    in_xor+=1;
 
-    int binary5 = and_output_wires[and_output_wires_indexes[s]] ^ xor_output_wires[xor_output_wires_indexes[b]];  // 0 mean index no 314
-    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[r + 3], binary5);
-    std::cout << and_output_wires_indexes[s] << " " << xor_output_wires_indexes[b] << " " << xor_output_wires_indexes[r + 3] << std::endl;
+    int binary6 = xor_input1_wires[xor_input1_wires_indexes[in_xor]] ^ xor_input2_wires_indexes[in_xor];  // 0 mean index no 314
+    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[in_xor], binary6);
+    std::cout << xor_input1_wires_indexes[in_xor] << " " << xor_input2_wires_indexes[in_xor] << " " << xor_output_wires_indexes[in_xor] << " " << std::endl;
 
-    int binary6 = xor_input2_wires[xor_input2_wires_indexes[60 - c1]] ^ xor_output_wires[xor_output_wires_indexes[r + 3]];  // 0 mean index no 314
-    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[c4 + 4], binary6);
-    std::cout << xor_input2_wires_indexes[60 - c1] << " " << xor_output_wires_indexes[r + 3] << " " << xor_output_wires_indexes[c4 + 4] << std::endl;
+    in_xor+=1;
 
-    int final_binary1 = xor_output_wires[xor_output_wires_indexes[63 - c3]] ^ xor_output_wires[xor_output_wires_indexes[r + 3]];  // 0 mean index no 314
-    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[c2 + 3], final_binary1);
-    std::cout << xor_output_wires_indexes[61 - c3] << " " << xor_output_wires_indexes[r + 3] << " " << xor_output_wires_indexes[c2 + 3] << std::endl;
+    int binary7 = xor_input1_wires[xor_input1_wires_indexes[in_xor]] ^ xor_input2_wires_indexes[in_xor];  // 0 mean index no 314
+    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[in_xor], binary7);
+    std::cout << xor_input1_wires_indexes[in_xor] << " " << xor_input2_wires_indexes[in_xor] << " " << xor_output_wires_indexes[in_xor] << " " << std::endl;
 
-    a += 1;
-    b += 1;
-    b1 += 1;
-    s += 1;
-    r += 1;
+    in_xor+=1;
 
-    c1 += 1;
-    c2 += 1;
-    c3 += 1;
-    c4 += 1;
   }
+
+  std::cout<<std::endl;
+  std::cout<<std::endl;
+
+  /*        // check INV gate only
+        else if (data_list[k][5] == "AND") {
+          // stores every gates wires index in respective arrays
+
+
+  */
+  /*
+        std::cout << and_input1_wires_indexes[k] << " " << and_input2_wires_indexes[k] << " " << and_output_wires_indexes[k] << " " << std::endl;
+*/ /*
+
+       }*/
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /*
+
+
+    int a = 2;
+    int b = 67;
+    int b1 = 64;
+
+    int s = 2;
+    int r = 68;
+    int c1 = 0;
+
+    int c2 = 70;
+    int c4 = 68;
+    int c3 = 1;
+
+    for (int i = 2; i < 6; ++i) {
+      std::cout << std::endl;
+      std::cout << "AND/XOR Block: " << i << " " << std::endl;
+      int binary3 = inv_output_wires[inv_output_wires_indexes[a]] ^ xor_output_wires[xor_output_wires_indexes[b]];  // 0 mean index no 314
+      xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[b + 3], binary3);
+      std::cout << inv_output_wires_indexes[a] << " " << xor_output_wires_indexes[67] << " " << xor_output_wires_indexes[b + 3] << std::endl;
+
+      int binary4 = xor_output_wires[xor_output_wires_indexes[b + 3]] & xor_output_wires[xor_output_wires_indexes[b1 + 4]];  // 0 mean index no 314
+      and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[s], binary4);
+      std::cout << xor_output_wires_indexes[b + 3] << " " << xor_output_wires_indexes[b1 + 4] << " " << and_output_wires_indexes[s] << std::endl;
+
+      int binary5 = and_output_wires[and_output_wires_indexes[s]] ^ xor_output_wires[xor_output_wires_indexes[b]];  // 0 mean index no 314
+      xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[r + 3], binary5);
+      std::cout << and_output_wires_indexes[s] << " " << xor_output_wires_indexes[b] << " " << xor_output_wires_indexes[r + 3] << std::endl;
+
+      int binary6 = xor_input2_wires[xor_input2_wires_indexes[60 - c1]] ^ xor_output_wires[xor_output_wires_indexes[r + 3]];  // 0 mean index no 314
+      xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[c4 + 4], binary6);
+      std::cout << xor_input2_wires_indexes[60 - c1] << " " << xor_output_wires_indexes[r + 3] << " " << xor_output_wires_indexes[c4 + 4] << std::endl;
+
+      int final_binary1 = xor_output_wires[xor_output_wires_indexes[63 - c3]] ^ xor_output_wires[xor_output_wires_indexes[r + 3]];  // 0 mean index no 314
+      xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[c2 + 3], final_binary1);
+      std::cout << xor_output_wires_indexes[61 - c3] << " " << xor_output_wires_indexes[r + 3] << " " << xor_output_wires_indexes[c2 + 3] << std::endl;
+
+      a += 1;
+      b += 1;
+      b1 += 1;
+      s += 1;
+      r += 1;
+
+      c1 += 1;
+      c2 += 1;
+      c3 += 1;
+      c4 += 1;
+    }
+  */
 
   /*Close the File*/
   config_file.close();
