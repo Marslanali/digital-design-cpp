@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/digitaldesign.dir/main.cpp.o  -o digitaldesign 
+/usr/bin/c++   -g   CMakeFiles/digitaldesign.dir/main.cpp.o  -o digitaldesign 

@@ -1,14 +1,14 @@
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 #include <fstream>
 #include <iostream>
 #include <iterator>
 #include <memory>
-#include <vector>
 #include <string>
-#include<stdio.h>
-#include<stdlib.h>
+#include <vector>
 
 // global variables
 int xor_count, and_count, inv_count, index_xor, index_and, index_inv = 0;
@@ -17,9 +17,7 @@ int xor_count, and_count, inv_count, index_xor, index_and, index_inv = 0;
 std::string input_a = "0010101101100010101010101000101010101001010110110011011110001010";
 std::string input_b = "0000010101101100010101010101000101010101001010110110011011110000";
 
-
 int main(int argc, char **argv) {
-
   // read circuit data from command line
   std::ifstream config_file(argv[1]);
   std::string delimeter_ = " ";
@@ -172,7 +170,6 @@ int main(int argc, char **argv) {
     std::cout << xor_input1_wires_indexes[l] << " " << xor_input2_wires_indexes[l] << " " << xor_output_wires_indexes[l] << " " << std::endl;
   }
 
-
   // print AND
   std::cout << "\n"
             << "\n";
@@ -181,14 +178,12 @@ int main(int argc, char **argv) {
     std::cout << and_input1_wires_indexes[l] << " " << and_input2_wires_indexes[l] << " " << and_output_wires_indexes[l] << " " << std::endl;
   }
 
-
-
   // print INV
   std::cout << "\n"
             << "\n";
   std::cout << "print INV " << std::endl;
   for (int l = 0; l < inv_count; ++l) {
-    std::cout << inv_input_wires_indexes[l] << " " << inv_output_wires_indexes[l]  << " " << std::endl;
+    std::cout << inv_input_wires_indexes[l] << " " << inv_output_wires_indexes[l] << " " << std::endl;
   }
 
   /////////////////////////////// 64-bit Subtractor FIRST STAGE Implementation start from here ////////////////////////////
@@ -206,32 +201,31 @@ int main(int argc, char **argv) {
   // print input data to be used for XOR
   std::cout << "\n"
             << "\n";
+  std::cout<< "print actual 64-bits inputs: " << std::endl;
   for (int i = 0; i < n; i++) std::cout << char_array1[i];
   std::cout << std::endl;
 
   for (int i = 0; i < n; i++) std::cout << char_array2[i];
   std::cout << std::endl;
 
-
-  //test copy data to vector
+  // test copy data to vector
   // copied inputs data to vectors
-/*
-  for (int m = 0; m < 64; ++m){
-    // Copy inputs
-    // inserts 7 at xor_input1_wires_indexes-th index
-    auto it = xor_input1_wires.insert(xor_input1_wires.begin() + xor_input1_wires_indexes[0], 1);
+  /*
+    for (int m = 0; m < 64; ++m){
+      // Copy inputs
+      // inserts 7 at xor_input1_wires_indexes-th index
+      auto it = xor_input1_wires.insert(xor_input1_wires.begin() + xor_input1_wires_indexes[0], 1);
 
-  }
-*/
+    }
+  */
 
   /////////////////////////////// Copy 64-bit input A and B to vectors  /////////////////////////////////////////////
-  for (int m = 0; m < 64; ++m){
+  for (int m = 0; m < 64; ++m) {
     // Copy inputs A
     // inserts char_array1      to       xor_input1_wires          at       xor_input1_wires_indexes-th index
-    xor_input1_wires.insert(xor_input1_wires.begin() + xor_input1_wires_indexes[m],  char_array1[m] - 48);
+    xor_input1_wires.insert(xor_input1_wires.begin() + xor_input1_wires_indexes[m], char_array1[m] - 48);
     // Copy inputs B
-    xor_input2_wires.insert(xor_input2_wires.begin() + xor_input2_wires_indexes[m],  char_array2[m] - 48);
-
+    xor_input2_wires.insert(xor_input2_wires.begin() + xor_input2_wires_indexes[m], char_array2[m] - 48);
   }
 
   std::cout << "\n"
@@ -239,20 +233,18 @@ int main(int argc, char **argv) {
 
   /////////////////////////////// Print copied input A /////////////////////////////////////////////
   // print copied input A
-  for (int j = 0; j < 64 ; ++j) {
-     // print copied input A
-     std::cout << "at index no:  "  << xor_input1_wires_indexes[j] << " value is: " << xor_input1_wires[xor_input1_wires_indexes[j]] << std::endl;
-
-   }
+  for (int j = 0; j < 64; ++j) {
+    // print copied input A
+    /*  std::cout << "at index no:  "  << xor_input1_wires_indexes[j] << " value is: " << xor_input1_wires[xor_input1_wires_indexes[j]] << std::endl;*/
+  }
 
   std::cout << "\n"
             << "\n";
 
   /////////////////////////////// Print copied input B /////////////////////////////////////////////
-  for (int j = 0; j < 64 ; ++j) {
+  for (int j = 0; j < 64; ++j) {
     // print copied input B
-    std::cout << "at index no:  "  << xor_input2_wires_indexes[j] << " value is: " << xor_input2_wires[xor_input2_wires_indexes[j]] << std::endl;
-
+    /*  std::cout << "at index no:  "  << xor_input2_wires_indexes[j] << " value is: " << xor_input2_wires[xor_input2_wires_indexes[j]] << std::endl;*/
   }
   std::cout << "\n"
             << "\n";
@@ -260,34 +252,61 @@ int main(int argc, char **argv) {
   // print
   std::cout << "\n"
             << "\n";
-  for (int i = 0; i < n; i++) std::cout <<  xor_input1_wires[xor_input1_wires_indexes[i]];
+  std::cout << "print XOR inputs (inverted): " << std::endl;
+  for (int i = 0; i < n; i++) std::cout << xor_input1_wires[xor_input1_wires_indexes[i]];
   std::cout << std::endl;
 
-  for (int i = 0; i < n; i++) std::cout <<  xor_input2_wires[xor_input2_wires_indexes[i]];
+  for (int i = 0; i < n; i++) std::cout << xor_input2_wires[xor_input2_wires_indexes[i]];
   std::cout << std::endl;
 
   ///////////////////////////////////////////// XOR operation first stage ////////////////////////////////////////////////
   for (int i = 0; i < 64; ++i) {
     int binary = xor_input1_wires[xor_input1_wires_indexes[i]] ^ xor_input2_wires[xor_input2_wires_indexes[i]];
+    /*
+        std::cout<<xor_output_wires_indexes[i]<<" ";
+    */
+    /*std::cout << binary;*/
+    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[m], binary);
+  }
 /*
-    std::cout<<xor_output_wires_indexes[i]<<" ";
-*/
-   std::cout<<binary;
-    xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[m],  binary);
+  // print for debug
+  std::cout << "\n"
+            << "\n";
+  for (int l = 0; l < 64; ++l) {
+    // debug XOR operation
+    std::cout << xor_input1_wires[l];
+  }
+  std::cout << "\n";
+  for (int l = 0; l < 64; ++l) {
+    // debug XOR operation
+    std::cout << xor_input2_wires[l];
+  }*/
 
+  /////////////////////////////////////////////////////////////debgus xor wires indexes///////////////////////////////////
+  /*// debug indexes
+  std::cout << "\n"
+            << "\n";
+
+  for (int l = 0; l < xor_count; ++l) {
+    // debug XOR operation
+    std::cout << xor_input1_wires_indexes[l] << " ";
   }
   std::cout << "\n"
             << "\n";
-   for (int l = 0; l < xor_count; ++l) {
-     //debug XOR operation
-     std::cout << xor_output_wires[l];
-   }
-   std::cout << "\n";
+  for (int l = 0; l < xor_count; ++l) {
+    // debug XOR operation
+    std::cout << xor_input2_wires_indexes[l] << " ";
+  }
+  std::cout << "\n";
+  std::cout << "\n"
+            << "\n";
+  for (int l = 0; l < xor_count; ++l) {
+    // debug XOR operation
+    std::cout << xor_output_wires_indexes[l] << " ";
+  }
+  std::cout << "\n";*/
 
-
-
-
-/*Close the File*/
-config_file.close();
-return 0;
+  /*Close the File*/
+  config_file.close();
+  return 0;
 }

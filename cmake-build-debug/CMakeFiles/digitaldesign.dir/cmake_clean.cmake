@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/digitaldesign.dir/main.cpp.o"
-  "digitaldesign"
   "digitaldesign.pdb"
+  "digitaldesign"
 )
 
 # Per-language clean rules from dependency scanning.
