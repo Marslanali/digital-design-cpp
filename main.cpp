@@ -199,6 +199,10 @@ int main(int argc, char **argv) {
   std::vector<unsigned int> inv_input_wires(total_wires, 0);
   std::vector<unsigned int> inv_output_wires(total_wires, 0);
 
+  std::vector<unsigned int> and_input1_wires(total_wires, 0);
+  std::vector<unsigned int> and_input2_wires(total_wires, 0);
+  std::vector<unsigned int> and_output_wires(total_wires, 0);
+
   // print input data to be used for XOR
   std::cout << "\n"
             << "\n";
@@ -237,8 +241,7 @@ int main(int argc, char **argv) {
     int binary = xor_input1_wires[xor_input1_wires_indexes[i]] ^ xor_input2_wires[xor_input2_wires_indexes[i]];
     /*std::cout << binary;*/
     xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[i], binary);
-    std::cout << xor_output_wires_indexes[i]<<" ";
-
+    std::cout << xor_output_wires_indexes[i] << " ";
   }
   std::cout << std::endl;
 
@@ -251,11 +254,48 @@ int main(int argc, char **argv) {
   std::cout << std::endl;
   for (int i = 0; i < 63; ++i) {
     /* std::cout<< "inv_input_wires_indexes: " << inv_input_wires_indexes[i] << std::endl;*/
-    int binary = ! inv_input_wires[inv_input_wires_indexes[i]];
+    int binary = !inv_input_wires[inv_input_wires_indexes[i]];
     inv_output_wires.insert(inv_output_wires.begin() + inv_output_wires_indexes[i], binary);
-    std::cout << inv_output_wires_indexes[i]<<" ";
+    std::cout << inv_output_wires_indexes[i] << " ";
   }
   std::cout << std::endl;
+
+  ////////////////////////////////// AND and XOR operation for first XOR output  ///////////////////////////////
+  std::cout << std::endl;
+  int binary1 = inv_output_wires[inv_output_wires_indexes[0]] & xor_input2_wires[xor_input2_wires_indexes[63]];  // 0 mean index no 314
+  and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[0], binary1);
+  std::cout << inv_output_wires_indexes[0] << " " << xor_input2_wires_indexes[63] << " " << and_output_wires_indexes[0] << std::endl;
+
+  int binary2 = xor_input2_wires[xor_input2_wires_indexes[62]] ^ and_output_wires[and_output_wires_indexes[0]];  // 0 mean index no 314
+  xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[64], binary2);
+  std::cout << xor_input2_wires_indexes[62] << " " << and_output_wires_indexes[0] << " " << xor_output_wires_indexes[64] << std::endl;
+
+  ////////////////////////////////// AND and XOR operation for second stage   ///////////////////////////////
+
+  int binary3 = inv_output_wires[inv_output_wires_indexes[1]] ^ and_output_wires[and_output_wires_indexes[0]];  // 0 mean index no 314
+  xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[66], binary3);
+  std::cout << inv_output_wires_indexes[1] << " " << and_output_wires_indexes[0] << " " << xor_output_wires_indexes[66] << std::endl;
+
+
+  int binary4 = xor_output_wires[xor_output_wires_indexes[66]] & xor_output_wires[xor_output_wires_indexes[64]];  // 0 mean index no 314
+  and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[1], binary4);
+  std::cout << xor_output_wires_indexes[66] << " " << xor_output_wires_indexes[64] << " " << and_output_wires_indexes[1] << std::endl;
+
+
+/*
+  int binary4 = and_output_wires[and_output_wires_indexes[1]] & xor_output_wires[xor_output_wires_indexes[64]];  // 0 mean index no 314
+  and_output_wires.insert(xor_output_wires.begin() + and_output_wires_indexes[1], binary4);
+  std::cout << and_output_wires_indexes[1] << " " << xor_output_wires_indexes[64] << " " << and_output_wires_indexes[1] << std::endl;*/
+
+/*  int binary5 = inv_output_wires[inv_output_wires_indexes[1]] ^ and_output_wires[and_output_wires_indexes[0]];  // 0 mean index no 314
+  xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[66], binary5);
+  std::cout << inv_output_wires_indexes[1] << " " << and_output_wires_indexes[0] << " " << xor_output_wires_indexes[66] << std::endl;
+
+  int binary6 = inv_output_wires[inv_output_wires_indexes[1]] ^ and_output_wires[and_output_wires_indexes[0]];  // 0 mean index no 314
+  xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[66], binary6);
+  std::cout << inv_output_wires_indexes[1] << " " << and_output_wires_indexes[0] << " " << xor_output_wires_indexes[66] << std::endl;*/
+
+
 
   /*Close the File*/
   config_file.close();
