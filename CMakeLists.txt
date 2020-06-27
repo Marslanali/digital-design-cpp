@@ -3,8 +3,8 @@ project(digitaldesign)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(include ${BOOST})
-find_package(Boost )
+
+find_package(Boost)
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
