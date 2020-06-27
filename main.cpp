@@ -264,7 +264,8 @@ int main(int argc, char **argv) {
   std::cout << std::endl;
   std::cout << "AND/XOR Block: " << 0 << " " << std::endl;
 
-  unsigned int binary1 = inv_output_wires[inv_output_wires_indexes[0]] & xor_input2_wires[xor_input2_wires_indexes[63]];  // 0 mean index no 314
+/*
+  unsigned int binary1 = inv_output_wires[and_input1_wires_indexes[0]] & xor_input2_wires[xor_input2_wires_indexes[63]];  // 0 mean index no 314
   and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[0], binary1);
   std::cout << inv_output_wires_indexes[0] << " " << xor_input2_wires_indexes[63] << " " << and_output_wires_indexes[0] << std::endl;
 
@@ -281,7 +282,37 @@ int main(int argc, char **argv) {
   std::cout << std::endl;
   std::cout << std::endl;
   std::cout << std::endl;
+*/
 
+  std::cout<<std::endl;
+  std::cout<<std::endl;
+  std::cout<<std::endl;
+
+  int ind_xor=65;
+  int ind_and=0;
+
+  std::cout<< "[xor_input1_wires[ind_xor]]" << xor_input2_wires_indexes[62] << std::endl;
+
+  unsigned  int binary4 = inv_output_wires[and_input1_wires_indexes[ind_and]] & xor_input2_wires_indexes[and_input2_wires_indexes[ind_and]];
+  and_output_wires.insert(and_output_wires.begin() + and_output_wires_indexes[ind_and], binary4);
+  std::cout << "XOR/AND: : "<< and_input1_wires_indexes[ind_and] << " " <<  and_input2_wires_indexes[ind_and] << " " <<and_output_wires_indexes[ind_and] << " " << std::endl;
+  std::cout << "GDB1 : "<< inv_output_wires[and_input1_wires_indexes[ind_and]]   << " " << xor_input2_wires_indexes[and_input2_wires_indexes[ind_and]] << " " << and_output_wires[and_output_wires_indexes[ind_and]] << " " << std::endl;
+
+  unsigned  int binary5 = xor_input1_wires[xor_input2_wires_indexes[62]] ^ and_output_wires[xor_input2_wires_indexes[ind_xor]];
+  xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[ind_xor], binary5);
+  std::cout << "XOR/AND: : "<< xor_input2_wires_indexes[62] << " " <<xor_input2_wires_indexes[ind_xor]<< " " <<  xor_output_wires_indexes[ind_xor] << " " << std::endl;
+  std::cout << "GDB2 : "<<xor_input1_wires[xor_input1_wires[ind_xor]]    << " " <<and_output_wires[xor_input2_wires_indexes[ind_xor]] << " " << xor_output_wires[ xor_output_wires_indexes[ind_xor]] << " " << std::endl;
+
+  ind_xor+=1;
+
+  unsigned int binary6 = xor_output_wires[xor_input1_wires_indexes[ind_xor]] ^ and_output_wires[and_output_wires_indexes[ind_xor]];
+  xor_output_wires.insert(xor_output_wires.begin() + xor_output_wires_indexes[ind_xor], binary6);
+  std::cout << "XOR/AND: : "<<  xor_input1_wires_indexes[ind_xor] << " " << xor_input2_wires_indexes[ind_xor] << " " << xor_output_wires_indexes[ind_xor] << " " << std::endl;
+  std::cout << "GDB3 : "<<  xor_output_wires[xor_input1_wires_indexes[ind_xor]] << " " <<  and_output_wires[and_output_wires_indexes[ind_xor]] << " " << xor_output_wires[xor_output_wires_indexes[ind_xor]] << " " << std::endl;
+
+  std::cout<<std::endl;
+  std::cout<<std::endl;
+  std::cout<<std::endl;
   ////////////////////////////////// AND and XOR operation for first XOR output  ///////////////////////////////
   /*std::cout << "AND/XOR Block: " << 1 << " " << std::endl;
 
@@ -309,7 +340,9 @@ int main(int argc, char **argv) {
   std::cout << std::endl;
   std::cout << std::endl;*/
 
-
+  std::cout<<std::endl;
+  std::cout<<std::endl;
+  std::cout<<std::endl;
 
 
   ////////////////////////////////// AND and XOR operation for rest of  XOR output  ///////////////////////////////

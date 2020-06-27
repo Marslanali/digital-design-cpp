@@ -3,4 +3,7 @@ project(digitaldesign)
 
 set(CMAKE_CXX_STANDARD 14)
 
+include_directories(include ${BOOST})
+
+
 add_executable(digitaldesign main.cpp)
