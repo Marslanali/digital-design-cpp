@@ -1,3 +1,4 @@
-/home/arslan/CLionProjects/digitaldesign/build/CMakeFiles/rebuild_cache.dir
 /home/arslan/CLionProjects/digitaldesign/build/CMakeFiles/edit_cache.dir
-/home/arslan/CLionProjects/digitaldesign/build/CMakeFiles/digitaldesign.dir
+/home/arslan/CLionProjects/digitaldesign/build/CMakeFiles/sub64.dir
+/home/arslan/CLionProjects/digitaldesign/build/CMakeFiles/rebuild_cache.dir
+/home/arslan/CLionProjects/digitaldesign/build/CMakeFiles/adder64.dir

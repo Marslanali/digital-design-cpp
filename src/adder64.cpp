@@ -116,14 +116,6 @@ int main(int argc, char **argv) {
         and_count += 1;
       }
     }
-
-    // make sure to count only INV gates
-    else if (data_list[k].size() == 5) {
-      // INV operation
-      if (data_list[k][4] == "INV") {
-        inv_count += 1;
-      }
-    }
   }
 
   std::cout << "No. of XOR: " << xor_count << "\n"
@@ -205,16 +197,6 @@ int main(int argc, char **argv) {
         wire[std::stoi(data_list[k][4])] = wire[std::stoi(data_list[k][2])] & wire[std::stoi(data_list[k][3])];
         std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " " << std::endl;
         std::cout << "AND GATE : " << wire[std::stoi(data_list[k][2])] << " " << wire[std::stoi(data_list[k][3])] << " " << wire[std::stoi(data_list[k][4])] << " " << std::endl;
-      }
-    }
-    // check INV gate only
-    else if (data_list[k].size() == 5) {
-      // INV gate data to be store in array
-      if (data_list[k][4] == "INV") {
-        wire[std::stoi(data_list[k][3])] = !wire[std::stoi(data_list[k][2])];
-        std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::endl;
-        std::cout << "INV GATE : " << wire[std::stoi(data_list[k][2])] << " " << wire[std::stoi(data_list[k][3])] << " " << std::endl;
-
       }
     }
   }
