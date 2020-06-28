@@ -1,5 +1,7 @@
 # Digitaldesign
 
+### Build code
+
 ```
 cd digitaldesign
 mkdir build
@@ -8,7 +10,7 @@ cmake ..
 make
 ```
 
-### run code
+### Run code
 ```
 ./sub64 /home/arslan/CLionProjects/digitaldesign/data/sub64.txt 
 ```
