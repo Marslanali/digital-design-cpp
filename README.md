@@ -59,7 +59,7 @@ Wires Indexes:
 
 
 
-### ======================= Run The Adder ============================= 
+### Run The Adder
 ```
 ./digitaldesign /home/arslan/CLionProjects/digitaldesign/data/adder64.txt
 ```
