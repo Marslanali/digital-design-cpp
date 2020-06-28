@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/sub64.dir/src/sub64.cpp.o  -o sub64 

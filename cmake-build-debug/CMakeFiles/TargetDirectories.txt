@@ -1,4 +1,0 @@
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/adder64.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/sub64.dir
