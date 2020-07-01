@@ -105,7 +105,85 @@ Wires Indexes:
 
 ```
 
+# Building Code on Windows with CLION
 
 
+### Prerequisite
 
+The program requires:
+
+  - MinGW 
+  - GCC 
+  - Cmake
+  - BOOST  
+
+### MinGW installation
+
+Make sure latest to download latest version, see https://sourceforge.net/projects/mingw-w64/ for download.
+Run the MinGW executable for the installation, and once completed, we have to add ENV in advanced system setting. 
+
+<p align="left">
+   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ENV for MinGW in windows
+</p>
+
+This will allows you to test GCC either from windows power shell or windows cmd.
+To verify GCC is installed correctly, open Power shell as an admininstrator and type:
+
+```
+gcc --version
+
+```
+
+
+### GCC installation
+
+Make sure latest to download latest version, see https://cmake.org/download/ for download.
+Run the CMake executable for the installation, and once completed, we have to add ENV in advanced system setting. 
+
+<p align="left">
+   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ENV for CMake in windows
+</p>
+
+This will allows you to test CMake either from windows power shell or windows cmd.
+To verify CMake is installed correctly, open Power shell as an admininstrator and type:
+
+```
+cmake --version
+
+```
+
+
+### BOOST installation
+
+Make sure latest to download latest version, see https://sourceforge.net/projects/boost/files/boost-binaries/1.55.0/ for download.
+Unzip and place all file under C:/Program Files/boost_1_66_0, and once completed, we can used it usign CMakeList.txt in our source code.
+
+
+```
+find_package(Boost 1.34)
+
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    add_executable(digitaldesign  ${PROJECT_SOURCE_DIR}/main.cpp)
+
+    target_link_libraries(digitaldesign ${Boost_LIBRARIES})
+
+endif()
+
+
+```
+
+The CMake message tab on CLION should print like this:
+
+```
+Found Boost: C:/Program Files/boost_1_66_0 (found suitable version "1.66.0", minimum required is "1.34")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Arslan Ali/CLionProjects/test/cmake-build-debug
+
+```
 
