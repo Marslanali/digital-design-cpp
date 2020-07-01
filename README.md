@@ -124,7 +124,7 @@ Make sure latest to download latest version, see https://sourceforge.net/project
 Run the MinGW executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+   <img src="env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for MinGW in windows
 </p>
@@ -146,7 +146,7 @@ Make sure latest to download latest version, see https://cmake.org/download/ for
 Run the CMake executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+   <img src="env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for CMake in windows
 </p>
@@ -168,7 +168,7 @@ Make sure latest to download latest pre-built binaries version, see http://gnuwi
 Run the GNU MAKE setup executable file for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+   <img src="env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV variable for GNU MAKE in windows
 </p>
