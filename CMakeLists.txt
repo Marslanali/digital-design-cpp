@@ -3,8 +3,7 @@ project(digitaldesign)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(Boost)
-
+find_package(Boost 1.34)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     add_executable(digitaldesign  ${PROJECT_SOURCE_DIR}/main.cpp)
