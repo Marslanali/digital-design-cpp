@@ -234,3 +234,25 @@ make
 & ".\digitaldesign.exe" 'C:\Users\Arslan Ali\CLionProjects\digitaldesign\data\adder64.txt'
 ```
 
+
+# Building Code on Windows with Ubuntu Shell
+
+
+### Prerequisite
+
+The program requires:
+
+  - GCC/g++
+  - Cmake
+  - BOOST  
+
+Install using apt-get in Ubunut Shell in windows
+
+```
+sudo apt install g++ 
+
+sudo apt install cmake 
+
+sudo apt install libboost-dev
+
+ ```
