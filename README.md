@@ -181,7 +181,22 @@ make --version
 
 ```
 
-You will see your version number, if not, check your environment variable again. 
+You will see your version number, if not, check your environment variable again using below screenshots.
+
+
+
+<p align="left">
+   <img src="environement.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ALL ENV variable in windows
+</p>
+
+
+<p align="left">
+   <img src="gcc.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ENV variable for GNU GCC in windows
+</p> 
 
 
 ### BOOST installation
@@ -224,10 +239,12 @@ open cmd or power shell as an administrator, and go to the CLION project directo
 cd digitaldesign
 mkdir build
 cd build
-cmake ..
+cmake .. -G "MinGW Makefiles"
 make
 
 ```
+
+The flag `-G "MinGW Makefiles"` is necessary if you are using power shell or cmd. 
 
 ### Run The Adder
 ```
