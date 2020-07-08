@@ -81,6 +81,7 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
     std::cout << std::endl;
     std::cout << std::endl;
 
+
     ////////////////////////////////////////// Read Circuit Total Gates /////////////////////////////////////////////////
     // read all gates data, count gates to be used in next index arrays
     for (int k = 4; k < data_list.size(); ++k)
@@ -115,11 +116,9 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
               << "No. of INV: " << inv_count << std::endl;
 }
 
-
-
-void Circuits::copy_inputs(const std::vector<std::vector<std::string>>& data_list,  const char& char_array1, const char& char_array2)
+void Circuits::copy_inputs(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
 {
-    //////////////////////////////////////////////// Copy Input A and B //////////////////////////////////////////////////
+    //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k <= 67; ++k) {
         // check XOR and AND gates only
@@ -127,16 +126,88 @@ void Circuits::copy_inputs(const std::vector<std::vector<std::string>>& data_lis
             // XOR data to be saved in array
             if (data_list[k][5] == "XOR") {
                 // Copy inputs A
-                wire[std::stoi(data_list[k][2])] = char_array1[k - 4] - 48;
+                wires[std::stoi(data_list[k][2])] = *char_array1 - 48;
+                //increment pointer for next element fetch
+                char_array1++;
                 // Copy inputs B
-                wire[std::stoi(data_list[k][3])] = char_array2[k - 4] - 48;
+                wires[std::stoi(data_list[k][3])] = *char_array2 - 48;
+                //increment pointer for next element fetch
+                char_array2++;
+            }
+        }
+    }
+}
+
+void Circuits::test_adder64(const std::vector<std::vector<std::string>>& data_list)
+{
+    ////////////////////////////////////////// 64-bit Subtractor Start From Here /////////////////////////////////////////
+    // gates index and save them in respective arrays start from here
+    for (int k = 4; k < data_list.size(); ++k) {
+        // check XOR and AND gates only
+        std::cout << std::endl;
+        std::cout << "\n=========================  XOR/AND BLOCKS # " << k - 4 << "  ============================\n"
+                  << std::endl;
+        if (data_list[k].size() == 6) {
+            // XOR data to be saved in array
+            if (data_list[k][5] == "XOR") {
+                // stores every gates wires in respective arrays
+                wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
+                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " "
+                          << std::stoi(data_list[k][4]) << " " << std::endl;
+                std::cout << "XOR GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
+                          << wires[std::stoi(data_list[k][4])] << " " << std::endl;
+
+            }
+                // check INV gate only
+            else if (data_list[k][5] == "AND") {
+                // stores every gates wires index in respective arrays
+                wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
+                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " "
+                          << std::stoi(data_list[k][4]) << " " << std::endl;
+                std::cout << "AND GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
+                          << wires[std::stoi(data_list[k][4])] << " " << std::endl;
+            }
+        }
+            // check INV gate only
+        else if (data_list[k].size() == 5) {
+            // INV gate data to be store in array
+            if (data_list[k][4] == "INV") {
+                wires[std::stoi(data_list[k][3])] = !wires[std::stoi(data_list[k][2])];
+                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::endl;
+                std::cout << "INV GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
+                          << std::endl;
             }
         }
     }
 
     std::cout << std::endl;
+
+}
+
+void Circuits::display_output()
+{
+    ///////////////////////////////////////////////// Final Output //////////////////////////////////////////////////////
+    std::vector<int> ind_xor_final;
+    int counter = 0;
+
+    for (int l = total_wires-1; l > 0; --l) {
+        ind_xor_final.push_back(l);
+        counter += 1;
+        if (counter >= 64)
+            break;
+    }
+
+    for (std::vector<int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it) {
+        std::cout << *it << " ";
+    }
+
     std::cout << std::endl;
     std::cout << std::endl;
 
+    for (std::vector<int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it) {
+        std::cout << wires[*it];
+    }
+    std::cout << std::endl;
+    std::cout << std::endl;
 
 }

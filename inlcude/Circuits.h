@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 
+#define TOTAL_WIRES 504
+
 enum GateType
 {
     XOR = 0,
@@ -27,7 +29,6 @@ enum GateType
 class Circuits
 {
   private:
-    unsigned int wires;
 
     // file reading variables
     std::string file_path_;
@@ -47,6 +48,10 @@ class Circuits
     unsigned int xor_count, and_count, inv_count;
 
   public:
+
+    // Total wires
+    unsigned int wires[TOTAL_WIRES];
+
     // No argument contructor
     Circuits(){};
 
@@ -61,9 +66,10 @@ class Circuits
 
     // print the all circuit data to the console
     void display_circuit(const std::vector<std::vector<std::string>>&  data_list);
-    void copy_inputs(const std::vector<std::vector<std::string>>& data_list,  const char& char_array1, const char& char_array2);
-    void return_wires();
-    void test_adder64();
+    void copy_inputs(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
+    void test_adder64(const std::vector<std::vector<std::string>>& data_list);
+    void display_output();
+    int total_num_wires();
 
 };
 
