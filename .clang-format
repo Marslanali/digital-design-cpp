@@ -43,5 +43,5 @@ BinPackArguments: false
 BinPackParameters: false
 IndentWrappedFunctionNames: false
 # 46. Lines should be 100 +/- few character char wide
-ColumnLimit: 120
+ColumnLimit: 160
 ...
