@@ -2,7 +2,8 @@
 // Created by arslan on 7/7/20.
 //
 
-#include "/home/arslan/CLionProjects/digitaldesign/inlcude/Circuits.h"
+#include "../digitaldesign/inlcude/Circuits.h"
+#include "../digitaldesign/inlcude/ReadData.h"
 #include <iostream>
 #include <memory>
 #include <string>
@@ -14,17 +15,17 @@ std::string input_b = "000001010110110001010101010100010101010100101011011001101
 
 int main(int argc, char** argv)
 {
-    // Create an instance of Circuit class using smart pointers
-    Circuits* circuit_instance = new Circuits;
+    // Create and instance of ReadData class and called constructor
+    ReadData text_file_read(argv[1]);
 
-    /*creating an object of Circuits*/
-    Circuits circuit_read(argv[1]);
+    // Get the data from text File
+    std::vector<std::vector<std::string>> data_list = text_file_read.get_data();
 
-    /*Get the data from text File*/
-    std::vector<std::vector<std::string>> data_list = circuit_read.get_data();
+    // Create an instance of Circuit class
+    Circuits* circuit_obj = new Circuits;
 
-    // circuit_instance calling to its member function i.e display_circuit
-    circuit_instance->display_circuit(data_list);
+    // circuit_obj calling to its member function i.e display_circuit
+    circuit_obj->display_circuit(data_list);
 
     ////////////////////////////////////////////////// Input Data A //////////////////////////////////////////////////////
     int n = input_a.length();
@@ -59,11 +60,9 @@ int main(int argc, char** argv)
     std::cout << std::endl;
 
     ///////////////////////////////////////////// Call 64-but adder/subtractor /////////////////////////////////////////
-    circuit_instance->copy_inputs(data_list, char_array1, char_array2);
-    circuit_instance->test_adder64(data_list);
-    circuit_instance->display_output();
+    circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
 
+    delete circuit_obj;
 
-
-        return 0;
+    return 0;
 }

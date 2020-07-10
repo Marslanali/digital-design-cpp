@@ -3,40 +3,9 @@
 //
 
 #include "../inlcude/Circuits.h"
-#include <boost/algorithm/string.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
-
-std::vector<std::vector<std::string>> Circuits::get_data()
-{
-    // read the circuit data from file path
-    std::string file_path = file_path_;
-
-    // read the circuit data from given file path
-    std::ifstream file(file_path);
-
-    if (!file)
-        std::cerr << "Could not open the file!" << std::endl;
-    else
-    {
-        // create vector of vector  of type string
-        std::vector<std::vector<std::string>> data_list;
-
-        std::string line = "";
-        /*Iterate through each line and split the content using delimeter*/
-        while (getline(file, line))
-        {
-            std::vector<std::string> vec;
-            boost::algorithm::split(vec, line, boost::is_any_of(delimeter_));
-            data_list.push_back(vec);
-        }
-        /*Close the File*/
-        file.close();
-
-        return data_list;
-    }
-}
 
 // print the all circuit data to the console
 void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data_list)
@@ -54,33 +23,29 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
         std::cout << "\n" << std::endl;
     }
 
-    total_gates = std::stoi(data_list[0][0]);
-    total_wires = std::stoi(data_list[0][1]);
+    total_gates_ = std::stoi(data_list[0][0]);
+    total_wires_ = std::stoi(data_list[0][1]);
 
-    total_num_input = std::stoi(data_list[1][0]);
-    inputs_bits = std::stoi(data_list[1][1]);
+    total_num_input_ = std::stoi(data_list[1][0]);
+    inputs_bits_ = std::stoi(data_list[1][1]);
 
-    total_num_outputs = std::stoi(data_list[2][0]);
-    outputs_bits = std::stoi(data_list[2][1]);
+    total_num_outputs_ = std::stoi(data_list[2][0]);
+    outputs_bits_ = std::stoi(data_list[2][1]);
 
-    std::cout << "No. of gates: " << total_gates << std::endl;
-    std::cout << "No. of wires: " << total_wires << std::endl;
-
-    std::cout << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "No. of inputs: " << total_num_input << std::endl;
-    std::cout << "No. of input bits: " << inputs_bits << std::endl;
+    std::cout << "No. of gates: " << total_gates_ << std::endl;
+    std::cout << "No. of wires: " << total_wires_ << std::endl;
 
     std::cout << std::endl;
     std::cout << std::endl;
 
-    std::cout << "No. of outputs: " << total_num_outputs << std::endl;
-    std::cout << "No. of output bits: " << outputs_bits << std::endl;
+    std::cout << "No. of inputs: " << total_num_input_ << std::endl;
+    std::cout << "No. of input bits: " << inputs_bits_ << std::endl;
 
     std::cout << std::endl;
     std::cout << std::endl;
 
+    std::cout << "No. of outputs: " << total_num_outputs_ << std::endl;
+    std::cout << "No. of output bits: " << outputs_bits_ << std::endl;
 
     ////////////////////////////////////////// Read Circuit Total Gates /////////////////////////////////////////////////
     // read all gates data, count gates to be used in next index arrays
@@ -92,12 +57,12 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
             // count XOR
             if (data_list[k][5] == "XOR")
             {
-                xor_count += 1;
+                xor_count_ += 1;
             }
             // count AND
             else if (data_list[k][5] == "AND")
             {
-                and_count += 1;
+                and_count_ += 1;
             }
         }
         // make sure to count only INV gates
@@ -106,18 +71,22 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
             // INV operation
             if (data_list[k][4] == "INV")
             {
-                inv_count += 1;
+                inv_count_ += 1;
             }
         }
     }
 
-    std::cout << "No. of XOR: " << xor_count << "\n"
-              << "No. of AND: " << and_count << "\n"
-              << "No. of INV: " << inv_count << std::endl;
+    std::cout << "No. of XOR: " << xor_count_ << "\n"
+              << "No. of AND: " << and_count_ << "\n"
+              << "No. of INV: " << inv_count_ << std::endl;
 }
 
-void Circuits::copy_inputs(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
+void Circuits::test_adder_sub64(const std::vector<std::vector<std::string> > &data_list, char *char_array1, char *char_array2)
 {
+
+    // Total wires
+    unsigned int wires[total_wires_];
+
     //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k <= 67; ++k) {
@@ -136,10 +105,7 @@ void Circuits::copy_inputs(const std::vector<std::vector<std::string>>& data_lis
             }
         }
     }
-}
 
-void Circuits::test_adder64(const std::vector<std::vector<std::string>>& data_list)
-{
     ////////////////////////////////////////// 64-bit Subtractor Start From Here /////////////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k < data_list.size(); ++k) {
@@ -182,15 +148,12 @@ void Circuits::test_adder64(const std::vector<std::vector<std::string>>& data_li
 
     std::cout << std::endl;
 
-}
 
-void Circuits::display_output()
-{
     ///////////////////////////////////////////////// Final Output //////////////////////////////////////////////////////
     std::vector<int> ind_xor_final;
     int counter = 0;
 
-    for (int l = total_wires-1; l > 0; --l) {
+    for (int l = total_wires_-1; l > 0; --l) {
         ind_xor_final.push_back(l);
         counter += 1;
         if (counter >= 64)
@@ -209,5 +172,6 @@ void Circuits::display_output()
     }
     std::cout << std::endl;
     std::cout << std::endl;
+
 
 }
