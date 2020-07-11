@@ -28,6 +28,7 @@ int main(int argc, char** argv)
     circuit_obj->display_circuit(data_list);
 
     ////////////////////////////////////// Inputs A & B  ///////////////////////////////////////////////////
+    // Input A and B 64-bits
     char* char_array1 = circuit_obj->read_inputs_A(input_a);
     char* char_array2 = circuit_obj->read_inputs_B(input_b);
 

@@ -17,8 +17,6 @@
 #include <string>
 #include <vector>
 
-#define INPUT_BITS 64
-
 /*
 enum GateType
 {
