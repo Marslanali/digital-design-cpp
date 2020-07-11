@@ -17,8 +17,9 @@
 #include <string>
 #include <vector>
 
-//#define TOTAL_WIRES 504
+#define INPUT_BITS 64
 
+/*
 enum GateType
 {
     XOR,
@@ -30,6 +31,8 @@ typedef struct
 {
     std::string XOR, AND, INV;
 } GateTypes;
+
+ */
 
 class Circuits
 {
@@ -47,16 +50,27 @@ class Circuits
     // XOR, AND and INV count
     unsigned int xor_count_, and_count_, inv_count_;
 
+    // Inputs
+    std::string input_a_;
+    std::string input_b_;
+
   public:
+
     // No argument constructor
     Circuits(){};
+
     // Read inputs
-    char* read_inputs();
+    char* read_inputs_A(std::string input_a);
+    char* read_inputs_B(std::string input_b);
+
     // print the all circuit data to the console
     void display_circuit(const std::vector<std::vector<std::string>>& data_list);
+
     // 64-bit adder subtractor implementation
     void test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
-    //void display_output();
+
+    // display output
+    void display_output();
 };
 
 #endif // DIGITALDESIGN_CIRCUITS_H

@@ -19,8 +19,8 @@ if (Boost_FOUND)
             ${PROJECT_SOURCE_DIR}/main.cpp
             ${PROJECT_SOURCE_DIR}/src/Circuits.cpp
             ${PROJECT_SOURCE_DIR}/src/ReadData.cpp
-            ${PROJECT_SOURCE_DIR}/inlcude/Circuits.h
-            ${PROJECT_SOURCE_DIR}/inlcude/ReadData.h)
+            ${PROJECT_SOURCE_DIR}/include/Circuits.h
+            ${PROJECT_SOURCE_DIR}/include/ReadData.h)
 ############################################################
 # Target Link Libaries
 ############################################################

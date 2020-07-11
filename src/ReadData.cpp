@@ -2,7 +2,7 @@
 // Created by arslan on 10/7/20.
 //
 
-#include "../inlcude/ReadData.h"
+#include "../include/ReadData.h"
 #include <boost/algorithm/string.hpp>
 #include <iostream>
 #include <string>

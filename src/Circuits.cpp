@@ -2,7 +2,7 @@
 // Created by arslan on 7/7/20.
 //
 
-#include "../inlcude/Circuits.h"
+#include "../include/Circuits.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -81,10 +81,50 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
               << "No. of INV: " << inv_count_ << std::endl;
 }
 
-// Read inputs
-char* Circuits::read_inputs()
+// Read inputs A
+char* Circuits::read_inputs_A(std::string input_a)
 {
+    // 64 bits input
+    input_a_ = input_a;
+    ////////////////////////////////////////////////// Input Data A //////////////////////////////////////////////////////
+    int n = input_a_.length();
 
+    static char char_array1[64];
+
+    // copying the contents of the
+    // string to char array
+    strcpy(char_array1, input_a_.c_str());
+
+    std::cout << "Input A (64 bits): " << std::endl;
+    for (int i = 0; i < n; i++)
+        std::cout << char_array1[i];
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    return char_array1;
+}
+
+// Read inputs B
+char* Circuits::read_inputs_B(std::string input_b)
+{
+    // 64 bits input
+    input_b_ = input_b;
+    ////////////////////////////////////////////////// Input Data B //////////////////////////////////////////////////////
+    int m = input_b_.length();
+
+    static char char_array2[64];
+
+    // copying the contents of the
+    // string to char array
+    strcpy(char_array2, input_b_.c_str());
+
+    std::cout << "Input B (64 bits): " << std::endl;
+    for (int i = 0; i < m; i++)
+        std::cout << char_array2[i];
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    return char_array2;
 }
 
 void Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
