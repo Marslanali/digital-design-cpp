@@ -124,7 +124,7 @@ Make sure latest to download latest version, see https://sourceforge.net/project
 Run the MinGW executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="env.jpg" width ="300" height="300"/>  
+   <img src="screen-shots/env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for MinGW in windows
 </p>
