@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 # Find BOOST Package
 ############################################################
 find_package(Boost 1.32)
+
 if (Boost_FOUND)
 ############################################################
 # Target Include Directories
@@ -21,6 +22,7 @@ if (Boost_FOUND)
             ${PROJECT_SOURCE_DIR}/src/ReadData.cpp
             ${PROJECT_SOURCE_DIR}/include/Circuits.h
             ${PROJECT_SOURCE_DIR}/include/ReadData.h)
+
 ############################################################
 # Target Link Libaries
 ############################################################
