@@ -124,7 +124,7 @@ Make sure latest to download latest version, see https://sourceforge.net/project
 Run the MinGW executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="screenshots/env.jpg" width ="300" height="300"/>  
+   <img src="env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for MinGW in windows
 </p>
@@ -146,7 +146,7 @@ Make sure latest to download latest version, see https://cmake.org/download/ for
 Run the CMake executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="screenshots/env.jpg" width ="300" height="300"/>  
+   <img src="screen-shots/env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for CMake in windows
 </p>
@@ -168,7 +168,7 @@ Make sure latest to download latest pre-built binaries version, see http://gnuwi
 Run the GNU MAKE setup executable file for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="screenshots/env.jpg" width ="300" height="300"/>  
+   <img src="screen-shots/env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV variable for GNU MAKE in windows
 </p>
@@ -181,7 +181,22 @@ make --version
 
 ```
 
-You will see your version number, if not, check your environment variable again. 
+You will see your version number, if not, check your environment variable again using below screenshots.
+
+
+
+<p align="left">
+   <img src="screen-shots/environement.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ALL ENV variable in windows
+</p>
+
+
+<p align="left">
+   <img src="screen-shots/gcc.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ENV variable for GNU GCC in windows
+</p> 
 
 
 ### BOOST installation
@@ -224,10 +239,12 @@ open cmd or power shell as an administrator, and go to the CLION project directo
 cd digitaldesign
 mkdir build
 cd build
-cmake ..
+cmake .. -G "MinGW Makefiles"
 make
 
 ```
+
+The flag `-G "MinGW Makefiles"` is necessary if you are using power shell or cmd. 
 
 ### Run The Adder
 ```
