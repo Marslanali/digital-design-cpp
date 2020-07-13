@@ -105,7 +105,7 @@ Wires Indexes:
 
 ```
 
-# Building Code on Windows with CLION
+# Building Code on Windows with CLION, CMAKE
 
 
 ### Prerequisite
@@ -115,6 +115,7 @@ The program requires:
   - MinGW 
   - GCC 
   - Cmake
+  - GNU MAKE
   - BOOST  
 
 ### MinGW installation
@@ -123,7 +124,7 @@ Make sure latest to download latest version, see https://sourceforge.net/project
 Run the MinGW executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+   <img src="screen-shots/env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for MinGW in windows
 </p>
@@ -136,14 +137,16 @@ gcc --version
 
 ```
 
+You will see your version number, if not, check your environment variable again. 
 
-### GCC installation
+
+### CMake Installation
 
 Make sure latest to download latest version, see https://cmake.org/download/ for download.
 Run the CMake executable for the installation, and once completed, we have to add ENV in advanced system setting. 
 
 <p align="left">
-   <img src="input_data_1D.jpg" width ="300" height="300"/>  
+   <img src="screen-shots/env.jpg" width ="300" height="300"/>  
   <br/>
   Fig. ENV for CMake in windows
 </p>
@@ -155,6 +158,45 @@ To verify CMake is installed correctly, open Power shell as an admininstrator an
 cmake --version
 
 ```
+
+You will see your version number, if not, check your environment variable again. 
+
+
+### GNU MAKE Installation
+
+Make sure latest to download latest pre-built binaries version, see http://gnuwin32.sourceforge.net/packages/ for download.
+Run the GNU MAKE setup executable file for the installation, and once completed, we have to add ENV in advanced system setting. 
+
+<p align="left">
+   <img src="screen-shots/env.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ENV variable for GNU MAKE in windows
+</p>
+
+This will allows you to test & run make either from windows power shell or windows cmd.
+To verify GNU make is installed correctly, open Power shell as an admininstrator and type:
+
+```
+make --version
+
+```
+
+You will see your version number, if not, check your environment variable again using below screenshots.
+
+
+
+<p align="left">
+   <img src="screen-shots/environement.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ALL ENV variable in windows
+</p>
+
+
+<p align="left">
+   <img src="screen-shots/gcc.jpg" width ="300" height="300"/>  
+  <br/>
+  Fig. ENV variable for GNU GCC in windows
+</p> 
 
 
 ### BOOST installation
@@ -187,3 +229,47 @@ Found Boost: C:/Program Files/boost_1_66_0 (found suitable version "1.66.0", min
 
 ```
 
+### Compile and Run
+
+
+open cmd or power shell as an administrator, and go to the CLION project directory
+
+
+```
+cd digitaldesign
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles"
+make
+
+```
+
+The flag `-G "MinGW Makefiles"` is necessary if you are using power shell or cmd. 
+
+### Run The Adder
+```
+& ".\digitaldesign.exe" 'C:\Users\Arslan Ali\CLionProjects\digitaldesign\data\adder64.txt'
+```
+
+
+# Building Code on Windows with Ubuntu Shell
+
+
+### Prerequisite
+
+The program requires:
+
+  - GCC/g++
+  - Cmake
+  - BOOST  
+
+Install using apt-get in Ubunut Shell in windows
+
+```
+sudo apt install g++ 
+
+sudo apt install cmake 
+
+sudo apt install libboost-dev
+
+ ```
