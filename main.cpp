@@ -33,7 +33,8 @@ int main(int argc, char** argv)
     char* char_array2 = circuit_obj->read_inputs_B(input_b);
 
     ////////////////////////////////////// Call 64-but adder/subtractor ////////////////////////////////////
-    circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
+    std::vector<unsigned int> return_wires = circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
+    circuit_obj->display_output(return_wires);
 
     delete circuit_obj;
 

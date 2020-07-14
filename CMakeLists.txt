@@ -31,7 +31,6 @@ add_executable(digitaldesign
 ############################################################
 #  Create an executable for DigitalDesign Unit Test
 ############################################################
-
 add_executable(digitaldesign-google-unit-test
         ${PROJECT_SOURCE_DIR}/unit-test-google/digitaldesign-google-unit-test.cpp
     	${PROJECT_SOURCE_DIR}/src/Circuits.cpp
@@ -44,7 +43,7 @@ add_executable(digitaldesign-google-unit-test
 ############################################################
 
 # Link runTests with what we want to test and the GTest and pthread library
-target_link_libraries(executeTests ${GTEST_LIBRARIES} pthread)
+target_link_libraries(digitaldesign-google-unit-test ${GTEST_LIBRARIES} pthread)
 target_link_libraries(digitaldesign ${Boost_LIBRARIES})
 
 
