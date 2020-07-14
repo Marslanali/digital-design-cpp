@@ -10,18 +10,16 @@
 #include <string>
 #include <vector>
 
-// Expected outputs
-const std::string ADDER_OUTPUT = "0011000011001110111111111101101111111110100001101001111001111010";
-const std::string SUBTRACTOR_OUTPUT = "0010010111110110010101010011100101010100001011111101000010011010";
-
 // Inputs
 const std::string input_a = "0010101101100010101010101000101010101001010110110011011110001010";
 const std::string input_b = "0000010101101100010101010101000101010101001010110110011011110000";
 
+// Expected outputs
+const std::string ADDER_OUTPUT = "0011000011001110111111111101101111111110100001101001111001111010";
+const std::string SUBTRACTOR_OUTPUT = "0010010111110110010101010011100101010100001011111101000010011010";
 
 std::string get_adder_output(std::string file_path)
 {
-
     // Create and instance of ReadData class and called constructor
     ReadData text_file_read(file_path);
 
@@ -38,7 +36,7 @@ std::string get_adder_output(std::string file_path)
     char* char_array1 = circuit_obj->read_inputs_A(input_a);
     char* char_array2 = circuit_obj->read_inputs_B(input_b);
 
-    // Call 64-but adder/subtracto
+    // Call 64-but adder/subtractor
     std::vector<unsigned int> return_wires = circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
     //circuit_obj->display_output(return_wires);
 
@@ -48,7 +46,7 @@ std::string get_adder_output(std::string file_path)
     if (!return_wires.empty())
     {
         // Convert all but the last element to avoid a trailing ","
-        std::copy(return_wires.begin(), return_wires.end()-1,std::ostream_iterator<int>(oss, ""));
+        std::copy(return_wires.begin(), return_wires.end() - 1, std::ostream_iterator<int>(oss, ""));
 
         // Now add the last element with no delimiter
         oss << return_wires.back();
@@ -65,18 +63,17 @@ std::string get_adder_output(std::string file_path)
             break;
     }
 
-    int c= 0;
-    std::cout<<std::endl;
+    int c = 0;
+    std::cout << std::endl;
     for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
     {
-       str[c] = oss.str()[*it];
-       c+=1;
-      /*  std::cout << oss.str()[*it];*/
+        str[c] = oss.str()[*it];
+        c += 1;
+        /*  std::cout << oss.str()[*it];*/
     }
     delete circuit_obj;
 
     return str;
-
 }
 
 TEST(DigitalDesignTest, adder_test)
@@ -87,9 +84,7 @@ TEST(DigitalDesignTest, adder_test)
     std::string adder_out = get_adder_output(file_path);
 
     ASSERT_EQ(adder_out, ADDER_OUTPUT);
-
 }
-
 
 TEST(DigitalDesignTest, subtractor_test)
 {
@@ -99,7 +94,6 @@ TEST(DigitalDesignTest, subtractor_test)
     std::string subtractor_out = get_adder_output(file_path);
 
     ASSERT_EQ(subtractor_out, SUBTRACTOR_OUTPUT);
-
 }
 
 int main(int argc, char** argv)

@@ -45,8 +45,6 @@ class Circuits
     unsigned int total_num_outputs_;
     unsigned int outputs_bits_;
 
-
-
     // Inputs
     std::string input_a_;
     std::string input_b_;
@@ -54,7 +52,6 @@ class Circuits
     std::vector<unsigned int> wires_vec_;
 
   public:
-
     // No argument constructor
     Circuits(){};
 
@@ -69,7 +66,7 @@ class Circuits
     std::vector<unsigned int> test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
 
     // display output
-    void display_output( std::vector<unsigned int> wires_temp);
+    void display_output(std::vector<unsigned int> wires_temp);
 };
 
 #endif // DIGITALDESIGN_CIRCUITS_H
