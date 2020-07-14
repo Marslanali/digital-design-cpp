@@ -10,9 +10,9 @@
 #include <string>
 #include <vector>
 
-
 // Expected outputs
 const std::string ADDER_OUTPUT = "0011000011001110111111111101101111111110100001101001111001111010";
+const std::string SUBTRACTOR_OUTPUT = "0010010111110110010101010011100101010100001011111101000010011010";
 
 // Inputs
 const std::string input_a = "0010101101100010101010101000101010101001010110110011011110001010";
@@ -71,8 +71,7 @@ std::string get_adder_output(std::string file_path)
     {
        str[c] = oss.str()[*it];
        c+=1;
-
-        std::cout << oss.str()[*it];
+      /*  std::cout << oss.str()[*it];*/
     }
     delete circuit_obj;
 
@@ -85,17 +84,22 @@ TEST(DigitalDesignTest, adder_test)
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "/home/arslan/CLionProjects/digitaldesign/data/arithmetic-functions/adder64.txt";
-
     std::string adder_out = get_adder_output(file_path);
 
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-std::cout<< adder_out;
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-
-
     ASSERT_EQ(adder_out, ADDER_OUTPUT);
+
+}
+
+
+TEST(DigitalDesignTest, subtractor_test)
+{
+    /////////////////////////////////////// Load Test Data /////////////////////////////////////
+    std::string file_path;
+    file_path = "/home/arslan/CLionProjects/digitaldesign/data/arithmetic-functions/sub64.txt";
+    std::string subtractor_out = get_adder_output(file_path);
+
+    ASSERT_EQ(subtractor_out, SUBTRACTOR_OUTPUT);
+
 }
 
 int main(int argc, char** argv)
