@@ -1,7 +1,6 @@
 //
 // Created by arslan on 7/7/20.
 //
-
 #include "../include/Circuits.h"
 #include <iostream>
 #include <string>
@@ -10,6 +9,10 @@
 // print the all circuit data to the console
 void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data_list)
 {
+    // XOR, AND and INV count
+    int xor_count_ = 0;
+    int and_count_ = 0;
+    int inv_count_ = 0;
     // print the all data to the console
     std::cout << std::endl;
     std::cout << std::endl;
@@ -47,6 +50,9 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
     std::cout << "No. of outputs: " << total_num_outputs_ << std::endl;
     std::cout << "No. of output bits: " << outputs_bits_ << std::endl;
 
+    std::cout << std::endl;
+    std::cout << std::endl;
+
     ////////////////////////////////////////// Read Circuit Total Gates /////////////////////////////////////////////////
     // read all gates data, count gates to be used in next index arrays
     for (int k = 4; k < data_list.size(); ++k)
@@ -79,6 +85,9 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
     std::cout << "No. of XOR: " << xor_count_ << "\n"
               << "No. of AND: " << and_count_ << "\n"
               << "No. of INV: " << inv_count_ << std::endl;
+
+    std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 // Read inputs A
@@ -127,11 +136,11 @@ char* Circuits::read_inputs_B(std::string input_b)
     return char_array2;
 }
 
-void Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
+std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
 {
     // Total wires
     unsigned int wires[total_wires_];
-    //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
+    //////////////////////////////////////////////// Copy Input A and B /////////////////////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k <= 67; ++k)
     {
@@ -153,7 +162,7 @@ void Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& dat
         }
     }
 
-    ////////////////////////////////////////// 64-bit Subtractor Start From Here /////////////////////////////////////////
+    ////////////////////////////////////////// 64-bit ADDER / SUBTRACTOR Start From Here ////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k < data_list.size(); ++k)
     {
@@ -198,8 +207,17 @@ void Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& dat
 
     std::cout << std::endl;
 
+    // copy array to vector to return
+    wires_vec_.resize(total_wires_);
+    std::copy(wires + 0, wires + total_wires_ - 1, wires_vec_.begin());
+
+    return wires_vec_;
+}
+
+void Circuits::display_output(std::vector<unsigned int> wires_temp)
+{
     ///////////////////////////////////////////////// Final Output //////////////////////////////////////////////////////
-    std::vector<int> ind_xor_final;
+    std::vector<unsigned int> ind_xor_final;
     int counter = 0;
 
     for (int l = total_wires_ - 1; l > 0; --l)
@@ -210,7 +228,7 @@ void Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& dat
             break;
     }
 
-    for (std::vector<int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
+    for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
     {
         std::cout << *it << " ";
     }
@@ -218,9 +236,9 @@ void Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& dat
     std::cout << std::endl;
     std::cout << std::endl;
 
-    for (std::vector<int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
+    for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
     {
-        std::cout << wires[*it];
+        std::cout << wires_temp[*it];
     }
     std::cout << std::endl;
     std::cout << std::endl;

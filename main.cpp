@@ -27,13 +27,14 @@ int main(int argc, char** argv)
     // circuit_obj calling to its member function i.e display_circuit
     circuit_obj->display_circuit(data_list);
 
-    ////////////////////////////////////// Inputs A & B  ///////////////////////////////////////////////////
+    ////////////////////////////////////// Inputs A & B  //////////////////////////////////////////////////
     // Input A and B 64-bits
     char* char_array1 = circuit_obj->read_inputs_A(input_a);
     char* char_array2 = circuit_obj->read_inputs_B(input_b);
 
-    ////////////////////////////////////// Call 64-but adder/subtractor ////////////////////////////////////
-    circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
+    ////////////////////////////////////// Call 64-but ADDER / SUBTRACTOR /////////////////////////////////
+    std::vector<unsigned int> return_wires = circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
+    circuit_obj->display_output(return_wires);
 
     delete circuit_obj;
 

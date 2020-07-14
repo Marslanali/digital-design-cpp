@@ -45,15 +45,14 @@ class Circuits
     unsigned int total_num_outputs_;
     unsigned int outputs_bits_;
 
-    // XOR, AND and INV count
-    unsigned int xor_count_, and_count_, inv_count_;
-
     // Inputs
     std::string input_a_;
     std::string input_b_;
 
-  public:
+    // Wires
+    std::vector<unsigned int> wires_vec_;
 
+  public:
     // No argument constructor
     Circuits(){};
 
@@ -65,10 +64,10 @@ class Circuits
     void display_circuit(const std::vector<std::vector<std::string>>& data_list);
 
     // 64-bit adder subtractor implementation
-    void test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
+    std::vector<unsigned int> test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
 
     // display output
-    void display_output();
+    void display_output(std::vector<unsigned int> wires_temp);
 };
 
 #endif // DIGITALDESIGN_CIRCUITS_H
