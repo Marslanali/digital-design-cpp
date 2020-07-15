@@ -215,6 +215,7 @@ std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vect
 
     return wires_vec_;
 }
+/*
 
 void Circuits::display_output(std::vector<unsigned int> wires_temp)
 {
@@ -230,13 +231,15 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp)
             break;
     }
 
-    /* for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
+    */
+/* for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
     {
         std::cout << *it << " ";
     }
 
     std::cout << std::endl;
-    std::cout << std::endl;*/
+    std::cout << std::endl;*//*
+
 
     for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
     {
@@ -245,3 +248,4 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp)
     std::cout << std::endl;
     std::cout << std::endl;
 }
+*/

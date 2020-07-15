@@ -20,7 +20,6 @@ const std::string SUBTRACTOR_OUTPUT = "00100101111101100101010100111001010101000
 
 std::string get_adder_output(std::string file_path)
 {
-
     // Create and instance of ReadData class and called constructor
     ReadData text_file_read(file_path);
 
