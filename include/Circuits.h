@@ -51,8 +51,6 @@ class Circuits
 
     std::vector<unsigned int> wires_vec_;
 
-    int test_variable;
-
   public:
     // No argument constructor
     Circuits(){};
@@ -71,7 +69,6 @@ class Circuits
 
     // display output
     void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);
-
 };
 
 #endif // DIGITALDESIGN_CIRCUITS_H
