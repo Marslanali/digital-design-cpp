@@ -16,7 +16,7 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
     int inv_count_ = 0;
     // print the all data to the console
     std::cout << std::endl;
-   /* std::cout << std::endl;
+    /* std::cout << std::endl;
     std::cout << "\n=========================  Print All Data  ============================\n" << std::endl;
     for (int i = 0; i < data_list.size(); ++i)
     {
@@ -54,7 +54,7 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
     std::cout << std::endl;
     std::cout << std::endl;
 
-    ////////////////////////////////////////// Read Circuit Total Gates /////////////////////////////////////////////////
+    /*    ////////////////////////////////////////// Read Circuit Total Gates /////////////////////////////////////////////////
     // read all gates data, count gates to be used in next index arrays
     for (int k = 4; k < data_list.size(); ++k)
     {
@@ -83,7 +83,7 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
         }
     }
 
-  /*  std::cout << "No. of XOR: " << xor_count_ << "\n"
+      std::cout << "No. of XOR: " << xor_count_ << "\n"
               << "No. of AND: " << and_count_ << "\n"
               << "No. of INV: " << inv_count_ << std::endl;
 
@@ -137,38 +137,32 @@ char* Circuits::read_inputs_B(std::string input_b)
     return char_array2;
 }
 
-std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
+std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
 {
     // Total wires
     unsigned int wires[total_wires_];
     //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
     // gates index and save them in respective arrays start from here
-    for (int k = 4; k <= 67; ++k)
+    for (int k = 63; k >= 0; --k)
     {
-        // check XOR and AND gates only
-        if (data_list[k].size() == 6)
-        {
-            // XOR data to be saved in array
-            if (data_list[k][5] == "XOR")
-            {
-                // Copy inputs A
-                wires[std::stoi(data_list[k][2])] = *char_array1 - 48;
-                //increment pointer for next element fetch
-                char_array1++;
-                // Copy inputs B
-                wires[std::stoi(data_list[k][3])] = *char_array2 - 48;
-                //increment pointer for next element fetch
-                char_array2++;
-            }
-        }
+        // Copy inputs B
+        wires[k] = *char_array1 - 48;
+        //increment pointer for next element fetch
+        char_array1++;
     }
-
-    ////////////////////////////////////////// 64-bit ADD / SUB Start From Here ////////////////////////////////////////
+    for (int k = 127; k >= 64; --k)
+    {
+        // Copy inputs A
+        wires[k] = *char_array2 - 48;
+        //increment pointer for next element fetch
+        char_array2++;
+    }
+    ////////////////////////////////////////// Arithmetic Function Start From Here ////////////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k < data_list.size(); ++k)
     {
         // check XOR and AND gates only
-       /* std::cout << std::endl;
+        /* std::cout << std::endl;
         std::cout << "\n=========================  XOR/AND BLOCKS # " << k - 4 << "  ============================\n" << std::endl;*/
         if (data_list[k].size() == 6)
         {
@@ -177,7 +171,7 @@ std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vect
             {
                 // stores every gates wires in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
-               /* std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " "
+                /* std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " "
                           << std::endl;
                 std::cout << "XOR GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
                           << wires[std::stoi(data_list[k][4])] << " " << std::endl;*/
@@ -187,7 +181,7 @@ std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vect
             {
                 // stores every gates wires index in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
-            /*    std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " "
+                /*    std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " "
                           << std::endl;
                 std::cout << "AND GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
                           << wires[std::stoi(data_list[k][4])] << " " << std::endl;*/
@@ -200,7 +194,7 @@ std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vect
             if (data_list[k][4] == "INV")
             {
                 wires[std::stoi(data_list[k][3])] = !wires[std::stoi(data_list[k][2])];
-              /*  std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::endl;
+                /*  std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::endl;
                 std::cout << "INV GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " " << std::endl;*/
             }
         }
@@ -210,10 +204,11 @@ std::vector<unsigned int> Circuits::test_adder_sub64(const std::vector<std::vect
 
     // copy array to vector to return
     wires_vec_.resize(total_wires_);
-    std::copy(wires + 0, wires + total_wires_ - 1, wires_vec_.begin());
+    std::copy(wires, wires + total_wires_, wires_vec_.begin());
 
     return wires_vec_;
 }
+/*
 
 std::vector<unsigned int> Circuits::test_mul64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2)
 {
@@ -250,20 +245,18 @@ std::vector<unsigned int> Circuits::test_mul64(const std::vector<std::vector<std
             {
                 // stores every gates wires in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
-                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " "
+                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " " << std::endl;
+                std::cout << "AND GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " " << wires[std::stoi(data_list[k][4])] << " "
                           << std::endl;
-                std::cout << "AND GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
-                          << wires[std::stoi(data_list[k][4])] << " " << std::endl;
             }
             // check INV gate only
             else if (data_list[k][5] == "XOR")
             {
                 // stores every gates wires index in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
-                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " "
+                std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::stoi(data_list[k][4]) << " " << std::endl;
+                std::cout << "XOR GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " " << wires[std::stoi(data_list[k][4])] << " "
                           << std::endl;
-                std::cout << "XOR GATE : " << wires[std::stoi(data_list[k][2])] << " " << wires[std::stoi(data_list[k][3])] << " "
-                          << wires[std::stoi(data_list[k][4])] << " " << std::endl;
             }
         }
     }
@@ -272,39 +265,75 @@ std::vector<unsigned int> Circuits::test_mul64(const std::vector<std::vector<std
 
     // copy array to vector to return
     wires_vec_.resize(total_wires_);
-    std::copy(wires , wires + total_wires_ , wires_vec_.begin());
+    std::copy(wires, wires + total_wires_, wires_vec_.begin());
 
     return wires_vec_;
 }
+*/
 
 void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_bit_size)
 {
     ///////////////////////////////////////////////// Final Output //////////////////////////////////////////////////////
-    std::vector<unsigned int> ind_xor_final;
+    std::vector<unsigned int> index;
     int counter = 0;
 
     for (int l = total_wires_ - 1; l > 0; --l)
     {
-        ind_xor_final.push_back(l);
+        index.push_back(l);
         counter += 1;
         if (counter >= output_bit_size)
             break;
     }
 
-    for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
-    {
-        std::cout << *it << " ";
-    }
-
-    std::cout<<std::endl;
+    std::cout << std::endl;
     std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-    std::cout<<std::endl;
+    std::cout << std::endl;
 
-    for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
+    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
     {
         std::cout << wires_temp[*it];
     }
 
     std::cout << std::endl;
     std::cout << std::endl;
+}
+
+void Circuits::display_output_mul64(std::vector<unsigned int> wires_temp, int output_bit_size)
+{
+
+    std::vector<unsigned int> index1;
+    int counter1 = 0;
+
+    for (int l = 28087; l >= 28033; --l)
+    {
+        index1.push_back(l);
+        counter1 += 1;
+        if (counter1 >= 64)
+            break;
+    }
+
+    std::vector<unsigned int> index2;
+    int counter2 = 0;
+
+    for (int l = 28154; l >= 28088; --l)
+    {
+        index2.push_back(l);
+        counter2 += 1;
+        if (counter2 >= 64)
+            break;
+    }
+
+    std::cout << std::endl;
+    std::cout << "Output " << 128 << " bits: " << std::endl;
+    std::cout << std::endl;
+
+    for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
+    {
+        std::cout << wires_temp[*it];
+    }
+
+    for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
+    {
+        std::cout << wires_temp[*it];
+    }
 }

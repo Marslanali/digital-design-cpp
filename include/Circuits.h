@@ -62,13 +62,14 @@ class Circuits
     // print the all circuit data to the console
     void display_circuit(const std::vector<std::vector<std::string>>& data_list);
 
-    // 64-bit adder subtractor implementation
-    std::vector<unsigned int> test_adder_sub64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
-    // 64-bit multiplier implementation
+    // arithmetic_functions implementation
+    std::vector<unsigned int> arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
+   /* // 64-bit multiplier implementation
     std::vector<unsigned int> test_mul64(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
-
+*/
     // display output
     void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);
+    void display_output_mul64(std::vector<unsigned int> wires_temp, int output_bit_size);
 };
 
 #endif // DIGITALDESIGN_CIRCUITS_H
