@@ -53,7 +53,6 @@ class Circuits
     // display output
     void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);
     void display_output_mul64(std::vector<unsigned int> wires_temp, int output_bit_size);
-    void display_output_div64(std::vector<unsigned int> wires_temp, int output_bit_size);
 
 };
 

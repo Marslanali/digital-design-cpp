@@ -78,7 +78,7 @@ TEST(DigitalDesignTest, adder_test)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
-    file_path = "/home/arslan/CLionProjects/digitaldesign/data/arithmetic-functions/adder64.txt";
+    file_path = "../data/arithmetic-functions/sub64.txt";
     std::string adder_out = get_output(file_path);
 
     ASSERT_EQ(adder_out, ADDER_OUTPUT);
@@ -88,11 +88,33 @@ TEST(DigitalDesignTest, subtractor_test)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
-    file_path = "/home/arslan/CLionProjects/digitaldesign/data/arithmetic-functions/sub64.txt";
+    file_path = "../data/arithmetic-functions/sub64.txt";
     std::string subtractor_out = get_output(file_path);
 
     ASSERT_EQ(subtractor_out, SUBTRACTOR_OUTPUT);
 }
+
+/*
+TEST(DigitalDesignTest, multiplication_test)
+{
+    /////////////////////////////////////// Load Test Data /////////////////////////////////////
+    std::string file_path;
+    file_path = "../data/arithmetic-functions/mult2_64.txt";
+    std::string subtractor_out = get_output(file_path);
+
+    ASSERT_EQ(subtractor_out, MULTIPLICATION_OUTPUT);
+}
+
+
+TEST(DigitalDesignTest, division_test)
+{
+    /////////////////////////////////////// Load Test Data /////////////////////////////////////
+    std::string file_path;
+    file_path = "../data/arithmetic-functions/divide64.txt";
+    std::string subtractor_out = get_output(file_path);
+
+    ASSERT_EQ(subtractor_out, DIVISION_OUTPUT);
+}*/
 
 int main(int argc, char** argv)
 {

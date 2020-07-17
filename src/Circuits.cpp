@@ -211,36 +211,104 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
 
 void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_bit_size)
 {
-    std::vector<unsigned int> index;
-    int counter = 0;
 
-    for (int l = total_wires_ - 1; l > 0; --l)
+    if (output_bit_size == 64)
     {
-        index.push_back(l);
-        counter += 1;
-        if (counter >= output_bit_size)
-            break;
+
+        std::vector<unsigned int> index;
+        int counter = 0;
+
+        for (int l = total_wires_ - 1; l > 0; --l)
+        {
+            index.push_back(l);
+            counter += 1;
+            if (counter >= output_bit_size)
+                break;
+        }
+
+        std::cout << std::endl;
+        std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+
+        for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
+        {
+            std::cout << wires_temp[*it];
+        }
+
+        std::cout << std::endl;
+        std::cout << std::endl;
     }
 
-    std::cout << std::endl;
-    std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-
-    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
+    else if (output_bit_size == 128)
     {
-        std::cout << wires_temp[*it];
-    }
+        std::vector<unsigned int> index1;
+        int counter1 = 0;
 
-    std::cout << std::endl;
-    std::cout << std::endl;
+        for (int l = total_wires_ - 1; l > 0; --l)
+        {
+            index1.push_back(l);
+            counter1 += 1;
+            if (counter1 >= 64)
+                break;
+        }
+
+        std::vector<unsigned int> index2;
+        int counter2 = 0;
+
+        for (int l = total_wires_ - 65; l > 0; --l)
+        {
+            index2.push_back(l);
+            counter2 += 1;
+            if (counter2 >= 64)
+                break;
+        }
+
+        std::cout << std::endl;
+        std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+
+        for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
+        {
+            std::cout << wires_temp[*it];
+        }
+
+        for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
+        {
+            std::cout << wires_temp[*it];
+        }
+
+        std::cout << std::endl;
+    }
 }
 
+/*
 ///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
 
 void Circuits::display_output_mul64(std::vector<unsigned int> wires_temp, int output_bit_size)
 {
-
     std::vector<unsigned int> index1;
     int counter1 = 0;
+
+    for (int l = total_wires_ - 1; l > 0; --l)
+    {
+        index1.push_back(l);
+        counter1 += 1;
+        if (counter1 >= 64)
+            break;
+    }
+
+    std::vector<unsigned int> index2;
+    int counter2 = 0;
+
+    for (int l = total_wires_ - 64; l > 0; --l)
+    {
+        index2.push_back(l);
+        counter2 += 1;
+        if (counter2 >= output_bit_size)
+            break;
+    }
+
+
+*/
+/*
 
     for (int l = 28087; l >= 28033; --l)
     {
@@ -257,50 +325,26 @@ void Circuits::display_output_mul64(std::vector<unsigned int> wires_temp, int ou
     {
         index2.push_back(l);
         counter2 += 1;
-        if (counter2 >= 64)
+        if (counter2 >= 59)
             break;
-    }
+    }*//*
+
 
     std::cout << std::endl;
     std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+
+    for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
+    {
+        std::cout << wires_temp[*it];
+    }
 
     for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
     {
         std::cout << wires_temp[*it];
     }
 
-    for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
-    {
-        std::cout << wires_temp[*it];
-    }
-    std::cout << std::endl;
-    std::cout << std::endl;
-}
-
-///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
-
-void Circuits::display_output_div64(std::vector<unsigned int> wires_temp, int output_bit_size)
-{
-
-    std::vector<unsigned int> index;
-    int counter = 0;
-
-    for (int l = 30011; l > 0; --l)
-    {
-        index.push_back(l);
-        counter += 1;
-        if (counter >= 64)
-            break;
-    }
-
-    std::cout << std::endl;
-    std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-
-    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
-    {
-        std::cout << wires_temp[*it];
-    }
-
     std::cout << std::endl;
 
 }
+
+*/
