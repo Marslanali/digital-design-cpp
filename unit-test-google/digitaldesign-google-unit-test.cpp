@@ -17,8 +17,11 @@ const std::string input_b = "000001010110110001010101010100010101010100101011011
 // Expected outputs
 const std::string ADDER_OUTPUT = "0011000011001110111111111101101111111110100001101001111001111010";
 const std::string SUBTRACTOR_OUTPUT = "0010010111110110010101010011100101010100001011111101000010011010";
+const std::string  MULTIPLICATION_OUTPUT = "00000000111010110100100101101010001100110001010101011000010100001010101101111110010000011110011001000011110100110000110101100000";
+const std::string  DIVISION_OUTPUT = "0000000000000000000000000000000000000000000000000000000000001000";
 
-std::string get_output(std::string file_path)
+
+std::string get_output(std::string file_path, int output_bit_size)
 {
     // Create and instance of ReadData class and called constructor
     ReadData text_file_read(file_path);
@@ -39,7 +42,7 @@ std::string get_output(std::string file_path)
     std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array1, char_array2);
 
     std::ostringstream oss;
-    std::string str(64, 'x');
+    std::string str(output_bit_size, 'x');
 
     if (!return_wires.empty())
     {
@@ -78,8 +81,8 @@ TEST(DigitalDesignTest, adder_test)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
-    file_path = "../data/arithmetic-functions/sub64.txt";
-    std::string adder_out = get_output(file_path);
+    file_path = "../data/arithmetic-functions/adder64.txt";
+    std::string adder_out = get_output(file_path, 64);
 
     ASSERT_EQ(adder_out, ADDER_OUTPUT);
 }
@@ -89,21 +92,20 @@ TEST(DigitalDesignTest, subtractor_test)
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "../data/arithmetic-functions/sub64.txt";
-    std::string subtractor_out = get_output(file_path);
+    std::string subtractor_out = get_output(file_path, 64);
 
     ASSERT_EQ(subtractor_out, SUBTRACTOR_OUTPUT);
 }
-
 /*
 TEST(DigitalDesignTest, multiplication_test)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "../data/arithmetic-functions/mult2_64.txt";
-    std::string subtractor_out = get_output(file_path);
+    std::string subtractor_out = get_output(file_path,128);
 
     ASSERT_EQ(subtractor_out, MULTIPLICATION_OUTPUT);
-}
+}*/
 
 
 TEST(DigitalDesignTest, division_test)
@@ -111,10 +113,10 @@ TEST(DigitalDesignTest, division_test)
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "../data/arithmetic-functions/divide64.txt";
-    std::string subtractor_out = get_output(file_path);
+    std::string subtractor_out = get_output(file_path,64);
 
     ASSERT_EQ(subtractor_out, DIVISION_OUTPUT);
-}*/
+}
 
 int main(int argc, char** argv)
 {
