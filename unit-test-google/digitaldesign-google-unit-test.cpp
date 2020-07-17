@@ -18,7 +18,7 @@ const std::string input_b = "000001010110110001010101010100010101010100101011011
 const std::string ADDER_OUTPUT = "0011000011001110111111111101101111111110100001101001111001111010";
 const std::string SUBTRACTOR_OUTPUT = "0010010111110110010101010011100101010100001011111101000010011010";
 
-std::string get_adder_output(std::string file_path)
+std::string get_output(std::string file_path)
 {
     // Create and instance of ReadData class and called constructor
     ReadData text_file_read(file_path);
@@ -37,7 +37,7 @@ std::string get_adder_output(std::string file_path)
     char* char_array2 = circuit_obj->read_inputs_B(input_b);
 
     // Call 64-but adder/subtractor
-    std::vector<unsigned int> return_wires = circuit_obj->test_adder_sub64(data_list, char_array1, char_array2);
+    std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array1, char_array2);
     //circuit_obj->display_output(return_wires);
 
     std::ostringstream oss;
@@ -81,7 +81,7 @@ TEST(DigitalDesignTest, adder_test)
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "/home/arslan/CLionProjects/digitaldesign/data/arithmetic-functions/adder64.txt";
-    std::string adder_out = get_adder_output(file_path);
+    std::string adder_out = get_output(file_path);
 
     ASSERT_EQ(adder_out, ADDER_OUTPUT);
 }
@@ -91,7 +91,7 @@ TEST(DigitalDesignTest, subtractor_test)
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "/home/arslan/CLionProjects/digitaldesign/data/arithmetic-functions/sub64.txt";
-    std::string subtractor_out = get_adder_output(file_path);
+    std::string subtractor_out = get_output(file_path);
 
     ASSERT_EQ(subtractor_out, SUBTRACTOR_OUTPUT);
 }
