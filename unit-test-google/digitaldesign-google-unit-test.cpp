@@ -36,9 +36,7 @@ std::string get_output(std::string file_path)
     char* char_array1 = circuit_obj->read_inputs_A(input_a);
     char* char_array2 = circuit_obj->read_inputs_B(input_b);
 
-    // Call 64-but adder/subtractor
     std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array1, char_array2);
-    //circuit_obj->display_output(return_wires);
 
     std::ostringstream oss;
     std::string str(64, 'x');
@@ -52,12 +50,12 @@ std::string get_output(std::string file_path)
         oss << return_wires.back();
     }
 
-    std::vector<unsigned int> ind_xor_final;
+    std::vector<unsigned int> index;
     int counter = 0;
 
     for (int l = return_wires.size() - 1; l > 0; --l)
     {
-        ind_xor_final.push_back(l);
+        index.push_back(l);
         counter += 1;
         if (counter >= 64)
             break;
@@ -65,7 +63,7 @@ std::string get_output(std::string file_path)
 
     int c = 0;
     std::cout << std::endl;
-    for (std::vector<unsigned int>::iterator it = ind_xor_final.begin(); it != ind_xor_final.end(); ++it)
+    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
     {
         str[c] = oss.str()[*it];
         c += 1;

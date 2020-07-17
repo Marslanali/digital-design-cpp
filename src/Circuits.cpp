@@ -274,6 +274,7 @@ void Circuits::display_output_mul64(std::vector<unsigned int> wires_temp, int ou
         std::cout << wires_temp[*it];
     }
     std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 ///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
@@ -301,5 +302,5 @@ void Circuits::display_output_div64(std::vector<unsigned int> wires_temp, int ou
     }
 
     std::cout << std::endl;
-    std::cout << std::endl;
+
 }
