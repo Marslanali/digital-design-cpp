@@ -1,5 +1,0 @@
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/digitaldesign-google-unit-test.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/circuits_library.dir
-/home/arslan/CLionProjects/digitaldesign/cmake-build-debug/CMakeFiles/digitaldesign.dir

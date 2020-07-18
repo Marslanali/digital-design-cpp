@@ -60,11 +60,18 @@ int main(int argc, char** argv)
     std::cout << "================== Testing subt64 ======================== " << std::endl;
     test_arithmetic("../data/arithmetic-functions/sub64.txt",64);
 
-    std::cout << "================== Testing mult64 ========================" << std::endl;
+    std::cout << "================== Testing mult128 ========================" << std::endl;
     test_arithmetic("../data/arithmetic-functions/mult2_64.txt", 128);
+
+    std::cout << "================== Testing mult64 ========================" << std::endl;
+    test_arithmetic("../data/arithmetic-functions/mult64.txt", 64);
 
     std::cout << "================== Testing div64 ========================== " << std::endl;
     test_arithmetic("../data/arithmetic-functions/divide64.txt", 64);
+
+    std::cout << "================== Testing unsigned div64 ========================== " << std::endl;
+    test_arithmetic("../data/arithmetic-functions/udivide64.txt", 64);
+
 
     return 0;
 }
