@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/digitaldesign-google-unit-test.dir/unit-test-google/digitaldesign-google-unit-test.cpp.o  -o digitaldesign-google-unit-test -Wl,-rpath,/home/arslan/CLionProjects/digitaldesign/cmake-build-debug libcircuits_library.so /usr/lib/libgtest.a -lpthread 

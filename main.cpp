@@ -43,8 +43,8 @@ void test_arithmetic(std::string file_path, int output_size)
     circuit_obj->display_circuit(data_list);
 
     // Input A and B 64-bits
-    char* char_array1 = circuit_obj->read_inputs_A(input_a1);
-    char* char_array2 = circuit_obj->read_inputs_B(input_b1);
+    char* char_array1 = circuit_obj->read_inputs_A(input_a2);
+    char* char_array2 = circuit_obj->read_inputs_B(input_b2);
 
     std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array1, char_array2);
     circuit_obj->display_output(return_wires, output_size);

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,libcircuits_library.so -o libcircuits_library.so CMakeFiles/circuits_library.dir/shared-lib/src/Circuits.cpp.o CMakeFiles/circuits_library.dir/shared-lib/src/ReadData.cpp.o 
