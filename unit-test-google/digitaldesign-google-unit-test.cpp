@@ -19,7 +19,7 @@ std::string input_single = "0000000000000000000000000000000000000000000000000000
 const std::string ADDER_OUTPUT = "0000000000000000000000000000000000000000000000000000000000010000";
 const std::string SUBTRACTOR_OUTPUT = "0000000000000000000000000000000000000000000000000000000000001100";
 const std::string MULT64_OUTPUT = "0000000000000000000000000000000000000000000000000000000000011100";
-const std::string  DIVISION_OUTPUT = "0000000000000000000000000000000000000000000000000000000000000111";
+const std::string DIVISION_OUTPUT = "0000000000000000000000000000000000000000000000000000000000000111";
 const std::string ZERO_EQUAL_OUTPUT = "1";
 
 std::string get_output(std::string file_path, int output_bit_size)
@@ -103,35 +103,20 @@ TEST(DigitalDesignTest, multiplication_test)
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "../data/arithmetic-functions/mult2_64.txt";
-    std::string subtractor_out = get_output(file_path,64);
+    std::string subtractor_out = get_output(file_path, 64);
 
     ASSERT_EQ(subtractor_out, MULT64_OUTPUT);
 }
-
 
 TEST(DigitalDesignTest, division_test)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "../data/arithmetic-functions/divide64.txt";
-    std::string subtractor_out = get_output(file_path,64);
+    std::string subtractor_out = get_output(file_path, 64);
 
     ASSERT_EQ(subtractor_out, DIVISION_OUTPUT);
 }
-
-
-
-TEST(DigitalDesignTest, zero_equal_test)
-{
-    /////////////////////////////////////// Load Test Data /////////////////////////////////////
-    std::string file_path;
-    file_path = "../data/arithmetic-functions/zero_equal.txt";
-    std::string zero_equal_output = get_output(file_path,1);
-
-    ASSERT_EQ(zero_equal_output, ZERO_EQUAL_OUTPUT);
-}
-
-
 
 int main(int argc, char** argv)
 {

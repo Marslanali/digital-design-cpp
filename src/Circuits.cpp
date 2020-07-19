@@ -232,29 +232,26 @@ std::vector<unsigned int> Circuits::arithmetic_functions2(const std::vector<std:
             {
                 // stores every gates wires in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
-
             }
-                // check INV gate only
+            // check INV gate only
             else if (data_list[k][5] == "AND")
             {
                 // stores every gates wires index in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
             }
         }
-            // check INV gate only
+        // check INV gate only
         else if (data_list[k].size() == 5)
         {
             // INV gate data to be store in array
             if (data_list[k][4] == "INV")
             {
                 wires[std::stoi(data_list[k][3])] = !wires[std::stoi(data_list[k][2])];
-
             }
 
             else if (data_list[k][4] == "EQW")
             {
                 wires[std::stoi(data_list[k][3])] = wires[std::stoi(data_list[k][2])];
-
             }
         }
     }
@@ -278,7 +275,6 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
         std::cout << "Output " << output_bit_size << " bits: " << std::endl;
         std::cout << wires_temp[total_wires_ - 1];
         std::cout << std::endl;
-
     }
 
     if (output_bit_size == 64)
