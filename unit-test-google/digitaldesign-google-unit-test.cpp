@@ -11,15 +11,16 @@
 #include <vector>
 
 // Inputs
-const std::string input_a = "0010101101100010101010101000101010101001010110110011011110001010";
-const std::string input_b = "0000010101101100010101010101000101010101001010110110011011110000";
+const std::string input_a = "0000000000000000000000000000000000000000000000000000000000001110";
+const std::string input_b = "0000000000000000000000000000000000000000000000000000000000000010";
+std::string input_single = "0000000000000000000000000000000000000000000000000000000000000000";
 
 // Expected outputs
-const std::string ADDER_OUTPUT = "0011000011001110111111111101101111111110100001101001111001111010";
-const std::string SUBTRACTOR_OUTPUT = "0010010111110110010101010011100101010100001011111101000010011010";
-const std::string  MULTIPLICATION_OUTPUT = "00000000111010110100100101101010001100110001010101011000010100001010101101111110010000011110011001000011110100110000110101100000";
-const std::string  DIVISION_OUTPUT = "0000000000000000000000000000000000000000000000000000000000001000";
-
+const std::string ADDER_OUTPUT = "0000000000000000000000000000000000000000000000000000000000010000";
+const std::string SUBTRACTOR_OUTPUT = "0000000000000000000000000000000000000000000000000000000000001100";
+const std::string MULT64_OUTPUT = "0000000000000000000000000000000000000000000000000000000000011100";
+const std::string  DIVISION_OUTPUT = "0000000000000000000000000000000000000000000000000000000000000111";
+const std::string ZERO_EQUAL_OUTPUT = "1";
 
 std::string get_output(std::string file_path, int output_bit_size)
 {
@@ -96,16 +97,16 @@ TEST(DigitalDesignTest, subtractor_test)
 
     ASSERT_EQ(subtractor_out, SUBTRACTOR_OUTPUT);
 }
-/*
+
 TEST(DigitalDesignTest, multiplication_test)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
     std::string file_path;
     file_path = "../data/arithmetic-functions/mult2_64.txt";
-    std::string subtractor_out = get_output(file_path,128);
+    std::string subtractor_out = get_output(file_path,64);
 
-    ASSERT_EQ(subtractor_out, MULTIPLICATION_OUTPUT);
-}*/
+    ASSERT_EQ(subtractor_out, MULT64_OUTPUT);
+}
 
 
 TEST(DigitalDesignTest, division_test)
@@ -117,6 +118,20 @@ TEST(DigitalDesignTest, division_test)
 
     ASSERT_EQ(subtractor_out, DIVISION_OUTPUT);
 }
+
+
+
+TEST(DigitalDesignTest, zero_equal_test)
+{
+    /////////////////////////////////////// Load Test Data /////////////////////////////////////
+    std::string file_path;
+    file_path = "../data/arithmetic-functions/zero_equal.txt";
+    std::string zero_equal_output = get_output(file_path,1);
+
+    ASSERT_EQ(zero_equal_output, ZERO_EQUAL_OUTPUT);
+}
+
+
 
 int main(int argc, char** argv)
 {

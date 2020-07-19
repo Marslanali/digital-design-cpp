@@ -155,7 +155,7 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
         //increment pointer for next element fetch
         char_array2++;
     }
-    ////////////////////////////////////////// Arithmetic Function Start From Here ////////////////////////////////////////
+    ////////////////////////////////////////// Arithmetic Function  /////////////////////////////////////////////////////
     // gates index and save them in respective arrays start from here
     for (int k = 4; k < data_list.size(); ++k)
     {
@@ -207,10 +207,79 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
     return wires_vec_;
 }
 
+std::vector<unsigned int> Circuits::arithmetic_functions2(const std::vector<std::vector<std::string>>& data_list, char* char_array1)
+{
+    // Total wires
+    unsigned int wires[total_wires_];
+    //////////////////////////////////////////////// Copy Input A /////////////////////////////////////////////////////////
+    // gates index and save them in respective arrays start from here
+    for (int k = 63; k >= 0; --k)
+    {
+        // Copy inputs B
+        wires[k] = *char_array1 - 48;
+        //increment pointer for next element fetch
+        char_array1++;
+    }
+    ////////////////////////////////////////// Arithmetic Function  ///////////////////////////////////////////////////////
+    // gates index and save them in respective arrays start from here
+    for (int k = 4; k < data_list.size(); ++k)
+    {
+        // check XOR and AND gates only
+        if (data_list[k].size() == 6)
+        {
+            // XOR data to be saved in array
+            if (data_list[k][5] == "XOR")
+            {
+                // stores every gates wires in respective arrays
+                wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
+
+            }
+                // check INV gate only
+            else if (data_list[k][5] == "AND")
+            {
+                // stores every gates wires index in respective arrays
+                wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
+            }
+        }
+            // check INV gate only
+        else if (data_list[k].size() == 5)
+        {
+            // INV gate data to be store in array
+            if (data_list[k][4] == "INV")
+            {
+                wires[std::stoi(data_list[k][3])] = !wires[std::stoi(data_list[k][2])];
+
+            }
+
+            else if (data_list[k][4] == "EQW")
+            {
+                wires[std::stoi(data_list[k][3])] = wires[std::stoi(data_list[k][2])];
+
+            }
+        }
+    }
+
+    std::cout << std::endl;
+
+    // copy array to vector to return
+    wires_vec_.resize(total_wires_);
+    std::copy(wires, wires + total_wires_, wires_vec_.begin());
+
+    return wires_vec_;
+}
+
 ///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
 
 void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_bit_size)
 {
+
+    if (output_bit_size == 1)
+    {
+        std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+        std::cout << wires_temp[total_wires_ - 1];
+        std::cout << std::endl;
+
+    }
 
     if (output_bit_size == 64)
     {
