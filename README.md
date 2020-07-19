@@ -11,12 +11,14 @@ make
 ```
 
 ### Run the Subtractor 
+
 ```
 ./digitaldesign /home/arslan/CLionProjects/digitaldesign/data/sub64.txt
 ```
 
 
 ###  64 bit subtractor outputs 
+
 ```
 No. of gates: 439
 No. of wires: 567
@@ -43,11 +45,13 @@ Input B (64 bits):
 ```
 
 ### Run The Adder
+
 ```
 ./digitaldesign /home/arslan/CLionProjects/digitaldesign/data/adder64.txt
 ```
 
 ### 64-bit Adder Outputs 
+
 ```
 No. of gates: 376
 No. of wires: 504
@@ -216,6 +220,7 @@ make
 The flag `-G "MinGW Makefiles"` is necessary if you are using power shell or cmd. 
 
 ### Run The Adder
+
 ```
 & ".\digitaldesign.exe" 'C:\Users\Arslan Ali\CLionProjects\digitaldesign\data\adder64.txt'
 ```
