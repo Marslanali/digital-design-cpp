@@ -165,7 +165,7 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
         if (data_list[k].size() == 6)
         {
             // XOR data to be saved in array
-            if (data_list[k][5] == "XOR")
+            if (data_list[k][5] == GATE[XOR])
             {
                 // stores every gates wires in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
@@ -175,7 +175,7 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
                           << wires[std::stoi(data_list[k][4])] << " " << std::endl;*/
             }
             // check INV gate only
-            else if (data_list[k][5] == "AND")
+            else if (data_list[k][5] == GATE[AND])
             {
                 // stores every gates wires index in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
@@ -189,7 +189,7 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
         else if (data_list[k].size() == 5)
         {
             // INV gate data to be store in array
-            if (data_list[k][4] == "INV")
+            if (data_list[k][4] == GATE[INV])
             {
                 wires[std::stoi(data_list[k][3])] = !wires[std::stoi(data_list[k][2])];
                 /*  std::cout << "Wires: : " << std::stoi(data_list[k][2]) << " " << std::stoi(data_list[k][3]) << " " << std::endl;
@@ -228,13 +228,13 @@ std::vector<unsigned int> Circuits::arithmetic_functions2(const std::vector<std:
         if (data_list[k].size() == 6)
         {
             // XOR data to be saved in array
-            if (data_list[k][5] == "XOR")
+            if (data_list[k][5] == GATE[XOR])
             {
                 // stores every gates wires in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
             }
             // check INV gate only
-            else if (data_list[k][5] == "AND")
+            else if (data_list[k][5] == GATE[AND])
             {
                 // stores every gates wires index in respective arrays
                 wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
@@ -244,12 +244,12 @@ std::vector<unsigned int> Circuits::arithmetic_functions2(const std::vector<std:
         else if (data_list[k].size() == 5)
         {
             // INV gate data to be store in array
-            if (data_list[k][4] == "INV")
+            if (data_list[k][4] == GATE[INV])
             {
                 wires[std::stoi(data_list[k][3])] = !wires[std::stoi(data_list[k][2])];
             }
 
-            else if (data_list[k][4] == "EQW")
+            else if (data_list[k][4] == GATE[EQW])
             {
                 wires[std::stoi(data_list[k][3])] = wires[std::stoi(data_list[k][2])];
             }
@@ -332,13 +332,11 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
 
         for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
         {
-            std::cout << *it<<" ";
+            std::cout << *it << " ";
         }
 
-
         std::cout << std::endl;
         std::cout << std::endl;
-
 
         for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
         {
@@ -350,20 +348,16 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
 
         for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
         {
-            std::cout << *it<<" ";
+            std::cout << *it << " ";
         }
 
-
         std::cout << std::endl;
         std::cout << std::endl;
-
 
         for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
         {
             std::cout << wires_temp[*it];
         }
-
-
 
         std::cout << std::endl;
     }

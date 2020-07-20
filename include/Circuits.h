@@ -16,16 +16,22 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <map>
 
-enum  GateType
+enum GateType
 {
     XOR,
     AND,
     INV,
-    EQ,
     EQW
 };
 
+static std::map< GateType, const char * > GATE = {
+    {XOR, "XOR"},
+    {AND, "AND"},
+    {INV, "INV"},
+    {EQW, "EQW"}
+};
 
 class Circuits
 {
@@ -46,9 +52,7 @@ class Circuits
 
     std::vector<unsigned int> wires_vec_;
 
-    std::vector<GateType> GateT;
-
-  public:
+public:
     // No argument constructor
     Circuits(){};
 

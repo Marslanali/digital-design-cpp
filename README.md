@@ -30,6 +30,34 @@ replace constants XOR/AND/INV with enum
 
 ### Ans:
 
+I defined enum, however, since we are using `std::string` comparision so I need one conversion fun as well.
+
+
+```
+enum GateType
+{
+    XOR,
+    AND,
+    INV,
+    EQW
+};
+
+static std::map< GateType, const char * > GATE = {
+    {XOR, "XOR"},
+    {AND, "AND"},
+    {INV, "INV"},
+    {EQW, "EQW"}
+};
+
+```
+
+And in loops we can use enum like this:
+
+```
+GATE[AND]
+```
+
+
 ### b)
 
 In circuit.cpp/h, you have 2 methods : read_inputs_A and read_inputs_b: Can you make one overloaded method.
