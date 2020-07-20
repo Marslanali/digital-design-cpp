@@ -105,22 +105,32 @@ Also the vector is resized `wires_vec_.resize(total_wires_);` so no extra memory
 
 In circuit.cpp::display_output: line 319: Why are you maintaining 2 vectors (index1 and index2). It appears like you can have only vector because the indices you are storing are sequential. Pl suggest
 
+### ANS:
+ 
+So bascially wires indexes are sequential as you can see in pics.
 
+In Figure 1, you can see there are two 64 bit outputs (`one is right 64 bit and other is left 64 bits`), right? 
+But if I will store them in one vector, It will print just as in Figure2. 
+
+SO I JUST FIRST PRINT INDEX2 and THEN INDEX1.
+
+``
+
+<p align="left">
+   <img src="screenshots/correct_mul.png" width ="1000" height="160"/>
+  <br/>
+  Fig. 1. I used two Vector amd in Index 2 is printed first and then index 1 is printed.
+</p>
 
 <p align="left">
    <img src="screenshots/mul128-only-one-vector.png" width ="1000" height="160"/>  
 
   <br/>
-  Fig. 1. WE will discuss this in a call
+  Fig. 1. Using only one VECTOR, Wrong OUTPUT DISPLAY
 </p>
 
 
 
-<p align="left">
-   <img src="screenshots/correct_mul.png" width ="1000" height="160"/>
-  <br/>
-  Fig. 1. WE will discuss this in a call
-</p>
 
 
 ### i)
