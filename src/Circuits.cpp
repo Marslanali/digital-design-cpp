@@ -283,7 +283,7 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
         std::vector<unsigned int> index;
         int counter = 0;
 
-        for (int l = total_wires_ - 1; l > 0; --l)
+        for (unsigned int l = total_wires_ - 1; l > 0; --l)
         {
             index.push_back(l);
             counter += 1;
@@ -308,7 +308,7 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
         std::vector<unsigned int> index1;
         int counter1 = 0;
 
-        for (int l = total_wires_ - 1; l > 0; --l)
+        for (unsigned int l = total_wires_ - 1; l > 0; --l)
         {
             index1.push_back(l);
             counter1 += 1;
@@ -319,7 +319,7 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
         std::vector<unsigned int> index2;
         int counter2 = 0;
 
-        for (int l = total_wires_ - 65; l > 0; --l)
+        for (unsigned int l = total_wires_ - 65; l > 0; --l)
         {
             index2.push_back(l);
             counter2 += 1;
