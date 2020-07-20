@@ -16,7 +16,6 @@ void test_arithmetic(std::string file_path, int output_size)
     // Create and instance of ReadData class and called constructor
     ReadData text_file_read(file_path);
 
-
     // Get the data from text File
     std::vector<std::vector<std::string>> data_list = text_file_read.get_data();
 

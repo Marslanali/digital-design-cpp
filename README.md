@@ -48,7 +48,9 @@ Vector, Yes we can return Whole Vector.
 c) in main.cpp, you have constants at the beginning: can you make them to a separate file. refer https://stackoverflow.com/questions/12042549/define-constant-variables-in-c-header
 (donot use namespaces for now)
 
-### Ans:  Its done. 
+### Ans: 
+
+Its done. 
 
 ### d)
 
@@ -62,8 +64,8 @@ The reason I define `static char char_array1[64]` as a static array as follow:
       this cannot be done for array defined locally, because its get out of scope/destroyed as soon as we are out of function,
       and pointer will point to nothing/garbage memory address. 
 
-    - I make array static to solve above issue, because static have a scope in life time of whole program. 
- 
+    - I make array static to solve above issue, because static have a scope in life time of whole program (end of main() function). 
+
 
 ### e)
 
@@ -107,19 +109,19 @@ In circuit.cpp::display_output: line 319: Why are you maintaining 2 vectors (ind
 
 ### ANS:
  
-So bascially wires indexes are sequential as you can see in pics.
+Yes, bascially wires indexes are sequential as you can see in pics. But I will explain why I used two index vectors.
 
-In Figure 1, you can see there are two 64 bit outputs (`one is right 64 bit and other is left 64 bits`), right? 
-But if I will store them in one vector, It will print just as in Figure2. 
+In Figure 1, you can see there are two 64 bit outputs (`one is right 64 bit and other is left 64 bits`), right?  
+But if I will store them in one vector, It will print just as in Figure2.
 
-SO I JUST FIRST PRINT INDEX2 and THEN INDEX1.
+SO I JUST FIRST PRINT INDEX2 and THEN INDEX1, to solve that issue. 
 
 ``
 
 <p align="left">
    <img src="screenshots/correct_mul.png" width ="1000" height="160"/>
   <br/>
-  Fig. 1. I used two Vector amd in Index 2 is printed first and then index 1 is printed.
+  Fig. 1. I used two Vector and Index 2 is printed first and then index 1 is printed.
 </p>
 
 <p align="left">
@@ -139,6 +141,14 @@ Can you check negation for following value (inputA) and cross compare with the v
 
 0010101101100010101010101000101010101001010110110011011110001010
 
+### ANS:
+
+This is I need to discuss with you, as I verified it, but first two bits are wrong. 
+
 ### j)
 
 let us talk about 2 things in circuit.cpp after you are done with the above (may be around your dinner time)
+
+### ANS:
+
+Yes,

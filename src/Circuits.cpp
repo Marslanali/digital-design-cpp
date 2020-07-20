@@ -352,7 +352,7 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
         {
             std::cout << *it<<" ";
         }
-        
+
 
         std::cout << std::endl;
         std::cout << std::endl;
