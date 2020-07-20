@@ -108,14 +108,19 @@ In circuit.cpp::display_output: line 319: Why are you maintaining 2 vectors (ind
 
 
 <p align="left">
-   <img src="screenshots/mul128-only-one-vector.png" width ="300" height="300"/>  
-   <img src="screenshots/correct_mul.png" width ="300" height="300"/>
+   <img src="screenshots/mul128-only-one-vector.png" width ="900" height="150"/>  
+
   <br/>
   Fig. 1. WE will discuss this in a call
 </p>
 
 
 
+<p align="left">
+   <img src="screenshots/correct_mul.png" width ="900" height="150"/>
+  <br/>
+  Fig. 1. WE will discuss this in a call
+</p>
 
 
 ### i)
