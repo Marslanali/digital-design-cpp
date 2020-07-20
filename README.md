@@ -28,6 +28,7 @@ make
 ### a)
 replace constants XOR/AND/INV with enum
 
+### Ans:
 
 ### b)
 
@@ -80,6 +81,8 @@ Added. Should I add try and catch in main.cpp while reading that text file read?
 circuits::arithmetic_functions: can you throw exceptions if data_list[k].size is different from 5 or 6)
 in both e and f: while throwing the exceptions, pl make sure to print the stack trace (that gives lines numbers, file/method names)
 
+### Ans:
+
 ### g)
 
 Question: In circuits.cpp: line 263: what are you doing? what does wires_vec represent (I mean each element is unsignd_vec which is 2 bytes? that is expensive memory. Can we just live with vector of bits/boolean to save memory; if so, how can you convert vector of booleans into std::string)
@@ -130,8 +133,6 @@ SO I JUST FIRST PRINT INDEX2 and THEN INDEX1, to solve that issue.
   <br/>
   Fig. 1. Using only one VECTOR, Wrong OUTPUT DISPLAY
 </p>
-
-
 
 
 
