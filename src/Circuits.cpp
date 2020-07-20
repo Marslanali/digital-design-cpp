@@ -330,15 +330,40 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
         std::cout << std::endl;
         std::cout << "Output " << output_bit_size << " bits: " << std::endl;
 
-        for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
+        for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
         {
-            std::cout << wires_temp[*it];
+            std::cout << *it<<" ";
         }
+
+
+        std::cout << std::endl;
+        std::cout << std::endl;
+
 
         for (std::vector<unsigned int>::iterator it = index1.begin(); it != index1.end(); ++it)
         {
             std::cout << wires_temp[*it];
         }
+
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
+        {
+            std::cout << *it<<" ";
+        }
+        
+
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+
+        for (std::vector<unsigned int>::iterator it = index2.begin(); it != index2.end(); ++it)
+        {
+            std::cout << wires_temp[*it];
+        }
+
+
 
         std::cout << std::endl;
     }

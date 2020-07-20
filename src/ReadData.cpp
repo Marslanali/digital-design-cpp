@@ -17,7 +17,7 @@ std::vector<std::vector<std::string>> ReadData::get_data()
     std::ifstream file(file_path);
 
     if (!file)
-        std::cerr << "Could not open the file!" << std::endl;
+        throw std::runtime_error("Could not open file");
     else
     {
         // create vector of vector  of type string

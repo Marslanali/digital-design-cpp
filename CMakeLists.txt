@@ -24,7 +24,8 @@ add_executable(digitaldesign
     ${PROJECT_SOURCE_DIR}/src/Circuits.cpp
     ${PROJECT_SOURCE_DIR}/src/ReadData.cpp
     ${PROJECT_SOURCE_DIR}/include/Circuits.h
-    ${PROJECT_SOURCE_DIR}/include/ReadData.h)
+    ${PROJECT_SOURCE_DIR}/include/ReadData.h
+    ${PROJECT_SOURCE_DIR}/include/Constants.h)
 
 ############################################################
 # Target Link Libaries
