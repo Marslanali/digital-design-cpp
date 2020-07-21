@@ -3,6 +3,7 @@
 //
 
 #include "../include/ReadData.h"
+#include "../include/Exception.h"
 #include <boost/algorithm/string.hpp>
 #include <iostream>
 #include <string>
@@ -17,7 +18,10 @@ std::vector<std::vector<std::string>> ReadData::get_data()
     std::ifstream file(file_path);
 
     if (!file)
-        throw std::runtime_error("Could not open file");
+    {
+        //throw std::runtime_error("Could not open file");
+        throw_line("Could not open file");
+    }
     else
     {
         // create vector of vector  of type string

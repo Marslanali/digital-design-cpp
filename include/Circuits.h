@@ -65,7 +65,6 @@ public:
 
     // arithmetic_functions implementation
     std::vector<unsigned int> arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
-    std::vector<unsigned int> arithmetic_functions2(const std::vector<std::vector<std::string>>& data_list, char* char_array1);
 
     // display output
     void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);
