@@ -10,174 +10,251 @@ cmake ..
 make
 ```
 
-### Online Calculator/Links:
+### Run the Subtractor 
 
 ```
-1. Online Calculator link: https://www.rapidtables.com/calc/math/binary-calculator.html
-
-2. Binary to Decimal Convert link: https://www.rapidtables.com/convert/number/binary-to-decimal.html
-
-3. No. of bits count link: https://wordcounter.net/
-
-4. And finally link for comparing outputs: https://text-compare.com/
-```
-
-### Questions & Answers
-
-
-### a)
-replace constants XOR/AND/INV with enum
-
-### Ans:
-
-I defined enum, however, since we are using `std::string` comparision so I need one conversion fun as well.
-
-
-```
-enum GateType
-{
-    XOR,
-    AND,
-    INV,
-    EQW
-};
-
-static std::map< GateType, const char * > GATE = {
-    {XOR, "XOR"},
-    {AND, "AND"},
-    {INV, "INV"},
-    {EQW, "EQW"}
-};
-
-```
-
-And in loops we can use enum like this:
-
-```
-GATE[AND]
+./digitaldesign /home/arslan/CLionProjects/digitaldesign/data/sub64.txt
 ```
 
 
-### b)
+###  64 bit subtractor outputs 
 
-In circuit.cpp/h, you have 2 methods : read_inputs_A and read_inputs_b: Can you make one overloaded method.
-
-### Ans: 
-
-For both `read_inputs_A` and `read_inputs_b` they are returning pointer to array. If I will make one overloaded method,
-than I cannot return the pointer to two arrays (separately) i.e. only one array pointer can return at a time `return char_array1`. 
-
-Also there are some circuits which only uses one input, that is why I make two separate `read_inputs_A` and `read_inputs_b` functions. 
-
-PS!. WE cannot return whole array, instead we can return pointer to that array, and then increment pointer to see all elements of the array. But In case of
-Vector, Yes we can return Whole Vector. 
-
-### c)
-
-c) in main.cpp, you have constants at the beginning: can you make them to a separate file. refer https://stackoverflow.com/questions/12042549/define-constant-variables-in-c-header
-(donot use namespaces for now)
-
-### Ans: 
-
-Its done. 
-
-### d)
-
-read_inputs_A (or B): You are returning static char. There should be better way of doing this I think. Is it correct to create static char inside a method and return it?
-
-### Ans: 
-
-The reason I define `static char char_array1[64]` as a static array as follow:
-
-    - I cannot return whole array, so only way is to return a pointer to that array. However,
-      this cannot be done for array defined locally, because its get out of scope/destroyed as soon as we are out of function,
-      and pointer will point to nothing/garbage memory address. 
-
-    - I make array static to solve above issue, because static have a scope in life time of whole program (end of main() function). 
+```
+No. of gates: 439
+No. of wires: 567
 
 
-### e)
-
-In ReadData::get_data: line 20 I think you should throw an exception if an error happens while opening file.
-
-### Ans: 
-
-Added. Should I add try and catch in main.cpp while reading that text file read?
-
-### f)
-
-circuits::arithmetic_functions: can you throw exceptions if data_list[k].size is different from 5 or 6)
-in both e and f: while throwing the exceptions, pl make sure to print the stack trace (that gives lines numbers, file/method names)
-
-### Ans:
-
-### g)
-
-Question: In circuits.cpp: line 263: what are you doing? what does wires_vec represent (I mean each element is unsignd_vec which is 2 bytes? that is expensive memory. Can we just live with vector of bits/boolean to save memory; if so, how can you convert vector of booleans into std::string)
+No. of inputs: 2
+No. of input bits: 64
 
 
-### ANS:
+No. of outputs: 1
+No. of output bits: 64
 
 
-Let me first explain what I am doing here:
-
-I have wires array of type unsigned int which contain wires indexes (I can make it to unsigned short int which is 2 bytes ).
-I can't return pointer to that wires array, and reason are two folds:
-
-    - This is local variable; we cannot return the pointer of array defined locally.
- 
-    - I cannot make it static too, because the array is initialized like `unsigned int wires[total_wires_];` not like `unsigned int wires[550];`
-
-This is why I just copy this array into another vector (`wires_vec_`) of type `unsigned int` and return it.
- 
-`std::copy(wires, wires + total_wires_, wires_vec_.begin());`
-
-Also the vector is resized `wires_vec_.resize(total_wires_);` so no extra memory is used. 
-
-### h)
-
-In circuit.cpp::display_output: line 319: Why are you maintaining 2 vectors (index1 and index2). It appears like you can have only vector because the indices you are storing are sequential. Pl suggest
-
-### ANS:
- 
-Yes, bascially wires indexes are sequential as you can see in pics. But I will explain why I used two index vectors.
-
-In Figure 1, you can see there are two 64 bit outputs (`one is right 64 bit and other is left 64 bits`), right?  
-But if I will store them in one vector, It will print just as in Figure2.
-
-SO I JUST FIRST PRINT INDEX2 and THEN INDEX1, to solve that issue. 
-
-``
-
-<p align="left">
-   <img src="screenshots/correct_mul.png" width ="1000" height="160"/>
-  <br/>
-  Fig. 1. I used two Vector and Index 2 is printed first and then index 1 is printed.
-</p>
-
-<p align="left">
-   <img src="screenshots/mul128-only-one-vector.png" width ="1000" height="160"/>  
-
-  <br/>
-  Fig. 1. Using only one VECTOR, Wrong OUTPUT DISPLAY
-</p>
-
-
-
-### i)
-
-Can you check negation for following value (inputA) and cross compare with the value in rapidtables.com. Some thing doesnt look right to me.
-
+Input A (64 bits): 
 0010101101100010101010101000101010101001010110110011011110001010
 
-### ANS:
+Input B (64 bits): 
+0000010101101100010101010101000101010101001010110110011011110000
 
-This is I need to discuss with you, as I verified it, but first two bits are wrong. 
+64 bit output:
 
-### j)
+0010010111110110010101010011100101010100001011111101000010011010
+```
 
-let us talk about 2 things in circuit.cpp after you are done with the above (may be around your dinner time)
+### Run The Adder
 
-### ANS:
+```
+./digitaldesign /home/arslan/CLionProjects/digitaldesign/data/adder64.txt
+```
 
-Yes,
+### 64-bit Adder Outputs 
+
+```
+No. of gates: 376
+No. of wires: 504
+
+
+No. of inputs: 2
+No. of input bits: 64
+
+
+No. of outputs: 1
+No. of output bits: 64
+
+Input A (64 bits): 
+0010101101100010101010101000101010101001010110110011011110001010
+
+Input B (64 bits): 
+0000010101101100010101010101000101010101001010110110011011110000
+
+64 bit output:
+
+0011000011001110111111111101101111111110100001101001111001111010
+```
+
+# Building Code on Windows with CLION, CMAKE
+
+### Prerequisite
+
+The program requires:
+
+  - MinGW 
+  - GCC 
+  - Cmake
+  - GNU MAKE
+  - BOOST
+  - GTest  
+
+
+### MinGW installation
+
+Make sure latest to download latest version, see https://sourceforge.net/projects/mingw-w64/ for download.
+Run the MinGW executable for the installation, and once completed, we have to add ENV in advanced system setting. 
+
+<p align="left">
+   <img src="screenshots/env.jpg" width ="300" height="300"/>
+  <br/>
+  Fig. ENV for MinGW in windows
+</p>
+
+This will allows you to test GCC either from windows power shell or windows cmd.
+To verify GCC is installed correctly, open Power shell as an admininstrator and type:
+
+```
+gcc --version
+
+```
+
+You will see your version number, if not, check your environment variable again. 
+
+
+### CMake Installation
+
+Make sure latest to download latest version, see https://cmake.org/download/ for download.
+Run the CMake executable for the installation, and once completed, we have to add ENV in advanced system setting. 
+
+<p align="left">
+   <img src="screenshots/env.jpg" width ="300" height="300"/> 
+  <br/>
+  Fig. ENV for CMake in windows
+</p>
+
+This will allows you to test CMake either from windows power shell or windows cmd.
+To verify CMake is installed correctly, open Power shell as an admininstrator and type:
+
+```
+cmake --version
+
+```
+
+You will see your version number, if not, check your environment variable again. 
+
+
+### GNU MAKE Installation
+
+Make sure latest to download latest pre-built binaries version, see http://gnuwin32.sourceforge.net/packages/ for download.
+Run the GNU MAKE setup executable file for the installation, and once completed, we have to add ENV in advanced system setting. 
+
+<p align="left">
+   <img src="screenshots/env.jpg" width ="300" height="300"/>
+  <br/>
+  Fig. ENV variable for GNU MAKE in windows
+</p>
+
+This will allows you to test & run make either from windows power shell or windows cmd.
+To verify GNU make is installed correctly, open Power shell as an admininstrator and type:
+
+```
+make --version
+
+```
+
+You will see your version number, if not, check your environment variable again using below screenshots.
+
+
+
+<p align="left">
+   <img src="screenshots/environement.jpg" width ="300" height="300"/>
+  <br/>
+  Fig. ALL ENV variable in windows
+</p>
+
+
+<p align="left">
+   <img src="screenshots/gcc.jpg" width ="300" height="300"/>
+  <br/>
+  Fig. ENV variable for GNU GCC in windows
+</p> 
+
+
+### BOOST installation
+
+Make sure latest to download latest version, see https://sourceforge.net/projects/boost/files/boost-binaries/1.55.0/ for download.
+Unzip and place all file under C:/Program Files/boost_1_66_0, and once completed, we can used it usign CMakeList.txt in our source code.
+
+
+```
+find_package(Boost 1.34)
+
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    add_executable(digitaldesign  ${PROJECT_SOURCE_DIR}/main.cpp)
+
+    target_link_libraries(digitaldesign ${Boost_LIBRARIES})
+
+endif()
+
+```
+
+The CMake message tab on CLION should print like this:
+
+```
+Found Boost: C:/Program Files/boost_1_66_0 (found suitable version "1.66.0", minimum required is "1.34")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Arslan Ali/CLionProjects/test/cmake-build-debug
+
+```
+
+### GTest installation
+
+The root folder contained 'googletest' which is GTest compiled from source in windows. We need to include this 
+folder in our project root folder while we are working on windows. 
+
+### Compile and Run
+
+open cmd or power shell as an administrator, and go to the CLION project directory
+
+```
+cd digitaldesign
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles"
+make
+
+```
+
+The flag `-G "MinGW Makefiles"` is necessary if you are using power shell or cmd. 
+
+### Run The Adder
+
+```
+& ".\digitaldesign.exe" 'C:\Users\Arslan Ali\CLionProjects\digitaldesign\data\adder64.txt'
+```
+
+
+# Building Code on Windows with Ubuntu Shell
+
+
+### Prerequisite
+
+The program requires:
+
+  - GCC/g++
+  - Cmake
+  - BOOST
+  - GTest  
+
+Install using apt-get in Ubunut Shell in windows
+
+```
+sudo apt install g++ 
+
+sudo apt install cmake 
+
+sudo apt install libboost-dev
+
+ ```
+
+To install GTest on windows Ubuntu Shell or Ubuntu
+
+```
+sudo apt-get install libgtest-dev
+sudo apt-get install cmake
+cd /usr/src/gtest
+sudo cmake CMakeLists.txt
+sudo make
+sudo cp *.a /usr/lib
+```
