@@ -2,25 +2,16 @@
 // Created by arslan on 13/7/20.
 //
 
+
 #include "/home/arslan/CLionProjects/digitaldesign/include/Circuits.h"
 #include "/home/arslan/CLionProjects/digitaldesign/include/ReadData.h"
+#include "/home/arslan/CLionProjects/digitaldesign/include/Constants.h"
 #include <gtest/gtest.h>
 #include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
 
-// Inputs
-const std::string input_a = "0000000000000000000000000000000000000000000000000000000000001110";
-const std::string input_b = "0000000000000000000000000000000000000000000000000000000000000010";
-std::string input_single = "0000000000000000000000000000000000000000000000000000000000000000";
-
-// Expected outputs
-const std::string ADDER_OUTPUT = "0000000000000000000000000000000000000000000000000000000000010000";
-const std::string SUBTRACTOR_OUTPUT = "0000000000000000000000000000000000000000000000000000000000001100";
-const std::string MULT64_OUTPUT = "0000000000000000000000000000000000000000000000000000000000011100";
-const std::string DIVISION_OUTPUT = "0000000000000000000000000000000000000000000000000000000000000111";
-const std::string ZERO_EQUAL_OUTPUT = "1";
 
 std::string get_output(std::string file_path, int output_bit_size)
 {
@@ -37,8 +28,8 @@ std::string get_output(std::string file_path, int output_bit_size)
     circuit_obj->display_circuit(data_list);
 
     // Input A and B 64-bits
-    char* char_array1 = circuit_obj->read_inputs_A(input_a);
-    char* char_array2 = circuit_obj->read_inputs_B(input_b);
+    char* char_array1 = circuit_obj->read_inputs_A(input_a2);
+    char* char_array2 = circuit_obj->read_inputs_B(input_b2);
 
     std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array1, char_array2);
 

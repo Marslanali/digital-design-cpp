@@ -16,6 +16,22 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <map>
+
+enum GateType
+{
+    XOR,
+    AND,
+    INV,
+    EQW
+};
+
+static std::map< GateType, const char * > GATE = {
+    {XOR, "XOR"},
+    {AND, "AND"},
+    {INV, "INV"},
+    {EQW, "EQW"}
+};
 
 class Circuits
 {
@@ -36,7 +52,7 @@ class Circuits
 
     std::vector<unsigned int> wires_vec_;
 
-  public:
+public:
     // No argument constructor
     Circuits(){};
 
@@ -49,12 +65,9 @@ class Circuits
 
     // arithmetic_functions implementation
     std::vector<unsigned int> arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2);
-    std::vector<unsigned int> arithmetic_functions2(const std::vector<std::vector<std::string>>& data_list, char* char_array1);
 
     // display output
     void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);
-
-
 };
 
 #endif // DIGITALDESIGN_CIRCUITS_H
