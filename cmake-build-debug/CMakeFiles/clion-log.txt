@@ -1,0 +1,7 @@
+/opt/clion-2019.3.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/arslan/CLionProjects/digitaldesign
+-- CMake version   : 4.15.0-106-generic
+-- Compiler        : /usr/bin/c++
+-- Operating System: Linux-4.15.0-106-generic
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/arslan/CLionProjects/digitaldesign/cmake-build-debug
