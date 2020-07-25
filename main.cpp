@@ -15,11 +15,6 @@
 std::string message =
 "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";*/
 
-/*// Key
-std::string key2(192, 'x');
-// Message
-std::string message2(128, 'x');*/
-
 void test_arithmetic(std::string file_path, int input_a_size, const int input_b_size, const int output_size) {
   ////////////////////////////////////// Arithmetic Functions ///////////////////////////////////////////////////
   // Create and instance of ReadData class and called constructor
@@ -49,7 +44,6 @@ void test_arithmetic(std::string file_path, int input_a_size, const int input_b_
     message[i] = '1';
   }
 
-
   /*
   if (file_path == "../data/arithmetic-functions/Keccak_f.txt")
   {
@@ -72,17 +66,16 @@ void test_arithmetic(std::string file_path, int input_a_size, const int input_b_
 
   circuit_obj->display_output(return_wires, output_size);
 
-
   delete circuit_obj;
 }
 
 int main(int argc, char** argv) {
   try {
-   /* std::cout << "================== Testing a AES-128 Circuit ======================" << std::endl;
+
+    std::cout << "================== Testing a AES-128 Circuit ======================" << std::endl;
     test_arithmetic("../data/cryptographic-functions/aes_128.txt", 128, 128, 128);
-*/
-    std::cout << "================== Testing aes_192 ======================== " << std::endl;
-    test_arithmetic("../data/cryptographic-functions/aes_192.txt", 192, 128, 128);
+    /* std::cout << "================== Testing aes_192 ======================== " << std::endl;
+     test_arithmetic("../data/cryptographic-functions/aes_192.txt", 192, 128, 128);*/
 
     /*        std::cout << "================== Testing aes_256 ========================" << std::endl;
     test_arithmetic("../data/arithmetic-functions/aes_256.txt", 128);

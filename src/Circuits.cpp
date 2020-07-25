@@ -138,7 +138,7 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
 
   //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
   // gates index and save them in respective arrays start from here
-  for (int k = 0; k <= 191; ++k) {
+  for (int k = 0; k <= 127; ++k) {
     // Copy inputs B
     wires[k] = *char_array1 - 48;
     // increment pointer for next element fetch
@@ -146,7 +146,7 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
   }
 
   if (char_array2 != NULL) {
-    for (int k = 192; k <= 192+128;  ++k) {
+    for (int k = 128; k <= 255; ++k) {
       // Copy inputs A
       wires[k] = *char_array2 - 48;
       // increment pointer for next element fetch
@@ -286,7 +286,6 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
       counter += 1;
       if (counter >= output_bit_size) break;
     }
-
 
     for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it) {
       std::cout << wires_temp[*it];
