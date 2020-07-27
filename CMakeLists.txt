@@ -9,84 +9,79 @@ message(STATUS "Operating System: " ${CMAKE_SYSTEM})
 ############################################################
 # Find BOOST, GTest package
 ############################################################
-find_package(Boost 1.32 )
+find_package(Boost 1.32)
 
-if(WIN32)
-	# for Windows operating system in general
-	ADD_SUBDIRECTORY (googletest)
-	enable_testing()
-endif()
+if (WIN32)
+    # for Windows operating system in general
+    ADD_SUBDIRECTORY(googletest)
+    enable_testing()
+endif ()
 
 if (UNIX)
-	# for Linux
-	find_package(GTest REQUIRED)
+    # for Linux
+    find_package(GTest REQUIRED)
 endif (UNIX)
 
 ############################################################
 # Create a library for digitaldesign circuits
 ############################################################
-#Generate the shared library from the library sources
-add_library(circuits_library SHARED
-		${PROJECT_SOURCE_DIR}/shared-lib/src/Circuits.cpp
-		${PROJECT_SOURCE_DIR}/shared-lib/src/ReadData.cpp
-		)
-add_library(circuits::library ALIAS circuits_library)
+#Generate the library from the library sources
+add_library(circuits_library STATIC
+        ${PROJECT_SOURCE_DIR}/src/Circuits.cpp
+        ${PROJECT_SOURCE_DIR}/src/ReadData.cpp
+        )
 
 ############################################################
 # Target Include Directories
 ############################################################
-if(WIN32)
-	include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-endif()
+if (WIN32)
+    include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+endif ()
 
 if (UNIX)
-	include_directories(${GTEST_INCLUDE_DIRS})
-endif()
-	
+    include_directories(${GTEST_INCLUDE_DIRS})
+endif ()
+
 include_directories(${Boost_INCLUDE_DIRS})
-target_include_directories(circuits_library
-		PUBLIC
-		${PROJECT_SOURCE_DIR}/include
-		)
 
 ############################################################
 # Create a executable for digitaldesign
 ############################################################
 add_executable(digitaldesign
-    ${PROJECT_SOURCE_DIR}/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/Circuits.cpp
-    ${PROJECT_SOURCE_DIR}/src/ReadData.cpp
-    ${PROJECT_SOURCE_DIR}/include/Circuits.h
-    ${PROJECT_SOURCE_DIR}/include/ReadData.h)
+        ${PROJECT_SOURCE_DIR}/test/main.cpp
+        ${PROJECT_SOURCE_DIR}/src/Circuits.cpp
+        ${PROJECT_SOURCE_DIR}/src/ReadData.cpp)
 
 ############################################################
 #  Create an executable for DigitalDesign Unit Test
 ############################################################
-add_executable(digitaldesign-google-unit-test
-        ${PROJECT_SOURCE_DIR}/unit-test-google/digitaldesign-google-unit-test.cpp
-		)
+SET(google-unit-test-digitaldesign StaticTest)
+add_executable(google-unit-test-digitaldesign
+        ${PROJECT_SOURCE_DIR}/test/digitaldesign-google-unit-test.cpp
+        )
 
 ############################################################
 # Target Link Libaries
 ############################################################
 target_link_libraries(digitaldesign ${Boost_LIBRARIES})
 if (WIN32)
-	# link the new circuits::library target with the digitaldesign-google-unit-test target
-	target_link_libraries( digitaldesign-google-unit-test
-			PRIVATE
-			circuits::library
-			PUBLIC
-			gtest gtest_main pthread
-			)
-	add_test( digitaldesign-google-unit-test digitaldesign-google-unit-test )
+    # link the new circuits::library target with the digitaldesign-google-unit-test target
+    target_link_libraries(google-unit-test-digitaldesign
+            PRIVATE
+            circuits_library
+            PUBLIC
+            gtest gtest_main pthread
+            )
+    add_test(google-unit-test-digitaldesign google-unit-test-digitaldesign)
 endif ()
 
 if (UNIX)
-	# link the new circuits::library target with the digitaldesign-google-unit-test target
-	target_link_libraries( digitaldesign-google-unit-test
-			PRIVATE
-			circuits::library
-			PUBLIC
-			${GTEST_LIBRARIES} pthread
-			)
+    # link the new circuits::library target with the digitaldesign-google-unit-test target
+    target_link_libraries(google-unit-test-digitaldesign
+            PRIVATE
+            circuits_library
+            PUBLIC
+            ${GTEST_LIBRARIES} pthread
+            )
 endif ()
+
