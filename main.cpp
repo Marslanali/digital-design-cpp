@@ -25,6 +25,7 @@ void test_arithmetic(const std::string& file_path, const int input_a_size, const
   circuit_obj->display_circuit(data_list);
 
   if (input_b_size != 0) {
+
     // Key
     std::string key(input_a_size, '0');
     // Message
@@ -33,6 +34,7 @@ void test_arithmetic(const std::string& file_path, const int input_a_size, const
     // Input A and B 64-bits
     char* char_array1 = circuit_obj->read_inputs_A(key);
     char* char_array2 = circuit_obj->read_inputs_B(message);
+
 
     std::vector<unsigned int> return_wires =
         circuit_obj->arithmetic_functions(data_list, char_array1, char_array2, input_a_size, input_b_size);
@@ -58,6 +60,13 @@ void test_arithmetic(const std::string& file_path, const int input_a_size, const
 
 int main(int argc, char** argv) {
   try {
+
+    std::cout << "================== Testing sha512.txt ========================== " << std::endl;
+    test_arithmetic("../data/cryptographic-functions/sha512.txt", 1024, 512, 512);
+
+    std::cout << "================== Testing sha256 ========================== " << std::endl;
+    test_arithmetic("../data/cryptographic-functions/sha256.txt", 512, 256, 256);
+
     std::cout << "================== Testing a AES-128 Circuit ======================" << std::endl;
     test_arithmetic("../data/cryptographic-functions/aes_128.txt", 128, 128, 128);
 
@@ -70,11 +79,8 @@ int main(int argc, char** argv) {
     std::cout << "================== Testing Keccak_f ========================" << std::endl;
     test_arithmetic("../data/cryptographic-functions/Keccak_f.txt", 1600, 0, 1600);
 
-    std::cout << "================== Testing sha256 ========================== " << std::endl;
-    test_arithmetic("../data/cryptographic-functions/sha256.txt", 512, 256, 256);
 
-    std::cout << "================== Testing sha512.txt ========================== " << std::endl;
-    test_arithmetic("../data/cryptographic-functions/sha512.txt", 1024, 512, 512);
+/*    */
   }
 
   catch (const std::runtime_error& ex) {
