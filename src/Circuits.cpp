@@ -99,13 +99,13 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
         // stores every gates wires in respective arrays
         wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] ^ wires[std::stoi(data_list[k][3])];
       }
-        // check INV gate only
+      // check INV gate only
       else if (data_list[k][5] == GATE[AND]) {
         // stores every gates wires index in respective arrays
         wires[std::stoi(data_list[k][4])] = wires[std::stoi(data_list[k][2])] & wires[std::stoi(data_list[k][3])];
       }
     }
-      // check INV gate only
+    // check INV gate only
     else if (data_list[k].size() == 5) {
       // INV gate data to be store in array
       if (data_list[k][4] == GATE[INV]) {
