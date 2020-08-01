@@ -39,7 +39,7 @@ std::string conversion_fun(std::vector<unsigned int> return_wires, int output_si
     int c = 0;
     std::cout << std::endl;
     //for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
-    for (unsigned int & it : index)
+    for (unsigned int& it : index)
     {
         str[c] = oss.str()[it];
         c += 1;
@@ -108,7 +108,6 @@ TEST(DigitalDesignTest, KECCAK_TEST)
     ASSERT_EQ(keccak_out, KECCAK_OUTPUT);
 }
 
-
 TEST(DigitalDesignTest, SHA_512_TEST)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
@@ -118,7 +117,6 @@ TEST(DigitalDesignTest, SHA_512_TEST)
 
     ASSERT_EQ(sha_512_out, SHA_512_OUTPUT);
 }
-
 
 TEST(DigitalDesignTest, SHA_256_TEST)
 {
@@ -130,8 +128,6 @@ TEST(DigitalDesignTest, SHA_256_TEST)
     ASSERT_EQ(sha_256_out, SHA_256_OUTPUT);
 }
 
-
-
 TEST(DigitalDesignTest, AES_256_TEST)
 {
     /////////////////////////////////////// Load Test Data /////////////////////////////////////
@@ -141,7 +137,6 @@ TEST(DigitalDesignTest, AES_256_TEST)
 
     ASSERT_EQ(aes_256_test, AES_256_OUTPUT);
 }
-
 
 TEST(DigitalDesignTest, AES_192_TEST)
 {
