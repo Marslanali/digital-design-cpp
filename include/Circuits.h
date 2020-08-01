@@ -10,13 +10,13 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <math.h>
 #include <memory>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include <map>
 
 enum GateType
 {
@@ -26,12 +26,7 @@ enum GateType
     EQW
 };
 
-static std::map< GateType, const char * > GATE = {
-    {XOR, "XOR"},
-    {AND, "AND"},
-    {INV, "INV"},
-    {EQW, "EQW"}
-};
+static std::map<GateType, const char*> GATE = {{XOR, "XOR"}, {AND, "AND"}, {INV, "INV"}, {EQW, "EQW"}};
 
 class Circuits
 {
@@ -52,7 +47,7 @@ class Circuits
 
     std::vector<unsigned int> wires_vec_;
 
-public:
+  public:
     // No argument constructor
     Circuits(){};
 
@@ -64,7 +59,8 @@ public:
     void display_circuit(const std::vector<std::vector<std::string>>& data_list);
 
     // arithmetic_functions implementation
-    std::vector<unsigned int> arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2, int intput_a_size, int intput_b_size);
+    std::vector<unsigned int>
+    arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2, int intput_a_size, int intput_b_size);
 
     // display output
     void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);

@@ -10,9 +10,6 @@
 // print the all circuit data to the console
 void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data_list)
 {
-    // print the all data to the console
-    std::cout << std::endl;
-
     total_gates_ = std::stoi(data_list[0][0]);
     total_wires_ = std::stoi(data_list[0][1]);
 
@@ -22,21 +19,6 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
     total_num_outputs_ = std::stoi(data_list[2][0]);
     outputs_bits_ = std::stoi(data_list[2][1]);
 
-    std::cout << "No. of gates: " << total_gates_ << std::endl;
-    std::cout << "No. of wires: " << total_wires_ << std::endl;
-
-    std::cout << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "No. of inputs: " << total_num_input_ << std::endl;
-    std::cout << "No. of input bits: " << inputs_bits_ << std::endl;
-
-    std::cout << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "No. of outputs: " << total_num_outputs_ << std::endl;
-    std::cout << "No. of output bits: " << outputs_bits_ << std::endl;
-
     std::cout << std::endl;
     std::cout << std::endl;
 }
@@ -45,20 +27,20 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
 char* Circuits::read_inputs_A(std::string input_a)
 {
     ////////////////////////////////////////////////// Input Data A //////////////////////////////////////////////////////
-
     // 64 bits input
     input_a_ = input_a;
 
     int n = input_a_.length();
+
     static char* char_array1 = new char[n];
 
     // copying the contents of the
     // string to char array
     strcpy(char_array1, input_a_.c_str());
 
-    std::cout << "Input A (" << n << " bits): " << std::endl;
-    for (int i = 0; i < n; i++)
-        std::cout << char_array1[i];
+//    std::cout << "Input A (" << n << " bits): " << std::endl;
+//    for (int i = 0; i < n; i++)
+//        std::cout << char_array1[i];
     std::cout << std::endl;
     std::cout << std::endl;
 
@@ -69,20 +51,20 @@ char* Circuits::read_inputs_A(std::string input_a)
 char* Circuits::read_inputs_B(std::string input_b)
 {
     ////////////////////////////////////////////////// Input Data B //////////////////////////////////////////////////////
-
     // 64 bits input
     input_b_ = input_b;
 
     int m = input_b_.length();
+
     static char* char_array2 = new char[m];
 
     // copying the contents of the
     // string to char array
     strcpy(char_array2, input_b_.c_str());
 
-    std::cout << "Input B (" << m << " bits): " << std::endl;
-    for (int i = 0; i < m; i++)
-        std::cout << char_array2[i];
+//    std::cout << "Input B (" << m << " bits): " << std::endl;
+//    for (int i = 0; i < m; i++)
+//        std::cout << char_array2[i];
 
     return char_array2;
 }
@@ -90,7 +72,6 @@ char* Circuits::read_inputs_B(std::string input_b)
 std::vector<unsigned int>
 Circuits::arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1, char* char_array2, int input_a_size, int input_b_size)
 {
-    //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
     // Total wires
     unsigned int wires[total_wires_];
 
@@ -162,8 +143,32 @@ Circuits::arithmetic_functions(const std::vector<std::vector<std::string>>& data
 ///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
 void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_bit_size)
 {
-    if (output_bit_size == 128)
-    {
+//    if (output_bit_size == 1600 || output_bit_size == 256 || output_bit_size == 512)
+//    {
+//        std::cout << std::endl;
+//        std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+//        std::vector<unsigned int> index;
+//        int counter = 0;
+//
+//        for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l)
+//        {
+//            index.push_back(l);
+//            counter += 1;
+//            if (counter >= output_bit_size)
+//                break;
+//        }
+//
+//        //for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
+//        for (unsigned int& it : index)
+//        {
+//            std::cout << wires_temp[it];
+//        }
+//        std::cout << std::endl;
+//        std::cout << std::endl;
+//    }
+
+//    else
+//    {
         std::cout << std::endl;
         std::cout << "Output " << output_bit_size << " bits: " << std::endl;
 
@@ -179,44 +184,22 @@ void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_b
                 break;
         }
 
-        for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
+        //for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
+        for (unsigned int& it : index)
         {
-            std::cout << wires_temp[*it];
-            if ((num & 7) == 7)
-            {
-                std::cout << "  ";
-            }
-            if ((num & 31) == 31)
-            {
-                std::cout << "\n";
-            }
-
-            num += 1;
+            std::cout << wires_temp[it];
+//            if ((num & 7) == 7)
+//            {
+//                std::cout << "  ";
+//            }
+//            if ((num & 31) == 31)
+//            {
+//                std::cout << "\n";
+//            }
+//
+//            num += 1;
         }
         std::cout << std::endl;
         std::cout << std::endl;
-    }
-
-    else
-    {
-        std::cout << std::endl;
-        std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-        std::vector<unsigned int> index;
-        int counter = 0;
-
-        for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l)
-        {
-            index.push_back(l);
-            counter += 1;
-            if (counter >= output_bit_size)
-                break;
-        }
-
-        for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it)
-        {
-            std::cout << wires_temp[*it];
-        }
-        std::cout << std::endl;
-        std::cout << std::endl;
-    }
+//    }
 }

@@ -2,9 +2,8 @@
 // Created by arslan on 7/7/20.
 //
 
-#include "/home/arslan/CLionProjects/digitaldesign/include/Circuits.h"
-#include "/home/arslan/CLionProjects/digitaldesign/include/Constants.h"
-#include "/home/arslan/CLionProjects/digitaldesign/include/ReadData.h"
+#include "../include/Circuits.h"
+#include "../include/ReadData.h"
 #include <iostream>
 #include <memory>
 #include <string>
@@ -21,7 +20,6 @@ void test_arithmetic(const std::string& file_path, const int input_a_size, const
 
     // Create an instance of Circuit class
     auto* circuit_obj = new Circuits;
-    // std::shared_ptr<Circuits> circuit_obj = std::make_shared<Circuits>();
 
     // circuit_obj calling to its member function i.e display_circuit
     circuit_obj->display_circuit(data_list);
@@ -29,21 +27,9 @@ void test_arithmetic(const std::string& file_path, const int input_a_size, const
     if (input_b_size != 0)
     {
         // Key
-        std::string key(input_a_size, 'x');
-        // Key
-        for (int i = 0; i < input_a_size; ++i)
-        {
-            key[i] = '0';
-        }
-
+        std::string key(input_a_size, '0');
         // Message
-        std::string message(input_b_size, 'x');
-
-        // Message
-        for (int i = 0; i < input_b_size; ++i)
-        {
-            message[i] = '1';
-        }
+        std::string message(input_b_size, '1');
 
         // Input A and B 64-bits
         char* char_array1 = circuit_obj->read_inputs_A(key);
@@ -56,18 +42,17 @@ void test_arithmetic(const std::string& file_path, const int input_a_size, const
 
     else
     {
+        char* char_array;
+        char_array = (char*)malloc(input_a_size * sizeof(char));
+
         // Key
-        std::string key1(input_a_size, 'x');
-        // Key
-        for (int i = 0; i < input_a_size; ++i)
-        {
-            key1[i] = '0';
-        }
+        std::string key(input_a_size, '0');
 
         // Input A 64-bits
-        char* char_array1 = circuit_obj->read_inputs_A(key1);
+        char_array = circuit_obj->read_inputs_A(key);
 
-        std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array1, nullptr, input_a_size, input_b_size);
+        std::vector<unsigned int> return_wires = circuit_obj->arithmetic_functions(data_list, char_array, nullptr, input_a_size, input_b_size);
+
         circuit_obj->display_output(return_wires, output_size);
     }
 }
@@ -76,24 +61,23 @@ int main(int argc, char** argv)
 {
     try
     {
+        std::cout << "================== Testing sha512.txt Circuit ========================== " << std::endl;
+        test_arithmetic("../data/cryptographic-functions/sha512.txt", 1024, 512, 512);
+
+        std::cout << "================== Testing sha256 Circuit ========================== " << std::endl;
+        test_arithmetic("../data/cryptographic-functions/sha256.txt", 512, 256, 256);
 
         std::cout << "================== Testing a AES-128 Circuit ======================" << std::endl;
         test_arithmetic("../data/cryptographic-functions/aes_128.txt", 128, 128, 128);
 
-        std::cout << "================== Testing aes_192 ======================== " << std::endl;
+        std::cout << "================== Testing aes_192 Circuit ======================== " << std::endl;
         test_arithmetic("../data/cryptographic-functions/aes_192.txt", 192, 128, 128);
 
-        std::cout << "================== Testing aes_256 ========================" << std::endl;
+        std::cout << "================== Testing aes_256 Circuit ========================" << std::endl;
         test_arithmetic("../data/cryptographic-functions/aes_256.txt", 256, 128, 128);
 
-        std::cout << "================== Testing Keccak_f ========================" << std::endl;
+        std::cout << "================== Testing Keccak_f Circuit ========================" << std::endl;
         test_arithmetic("../data/cryptographic-functions/Keccak_f.txt", 1600, 0, 1600);
-
-        std::cout << "================== Testing sha256 ========================== " << std::endl;
-        test_arithmetic("../data/cryptographic-functions/sha256.txt", 512, 256, 256);
-
-        std::cout << "================== Testing sha512.txt ========================== " << std::endl;
-        test_arithmetic("../data/cryptographic-functions/sha512.txt", 1024, 512, 512);
     }
 
     catch (const std::runtime_error& ex)
