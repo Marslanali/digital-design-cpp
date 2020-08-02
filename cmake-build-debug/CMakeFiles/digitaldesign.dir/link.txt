@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/digitaldesign.dir/test/main.cpp.o CMakeFiles/digitaldesign.dir/src/Circuits.cpp.o CMakeFiles/digitaldesign.dir/src/ReadData.cpp.o  -o digitaldesign 
