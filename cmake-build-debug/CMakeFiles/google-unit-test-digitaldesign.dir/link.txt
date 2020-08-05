@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/google-unit-test-digitaldesign.dir/test/digitaldesign-google-unit-test.cpp.o  -o google-unit-test-digitaldesign libcircuits_library.a /usr/lib/libgtest.a -lpthread 

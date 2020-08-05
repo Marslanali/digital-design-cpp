@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcircuits_library.a  CMakeFiles/circuits_library.dir/src/Circuits.cpp.o CMakeFiles/circuits_library.dir/src/ReadData.cpp.o
-/usr/bin/ranlib libcircuits_library.a
