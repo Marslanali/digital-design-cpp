@@ -130,8 +130,6 @@ std::vector<int> Circuits::arithmetic_functions(const std::vector<std::vector<st
 ///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
 void Circuits::display_output(std::vector<int> wires_temp, int output_bit_size) {
 //  if (output_bit_size == 1600 || output_bit_size == 256 || output_bit_size == 512) {
-    std::cout << std::endl;
-    std::cout << "Output " << output_bit_size << " bits: " << std::endl;
   std::cout << std::endl;
   std::cout << "Output " << output_bit_size << " bits: " << std::endl;
   std::vector<unsigned int> index;
