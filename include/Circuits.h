@@ -38,7 +38,7 @@ class Circuits {
   std::string input_a_;
   std::string input_b_;
 
-  std::vector<unsigned int> wires_vec_;
+  std::vector<int> wires_vec_;
 
  public:
   // No argument constructor
@@ -52,11 +52,10 @@ class Circuits {
   void display_circuit(const std::vector<std::vector<std::string>>& data_list);
 
   // arithmetic_functions implementation
-  std::vector<unsigned int> arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1,
+  std::vector<int> arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1,
                                                  char* char_array2, int intput_a_size, int intput_b_size);
-
   // display output
-  void display_output(std::vector<unsigned int> wires_temp, int output_bit_size);
+  void display_output(std::vector<int> wires_temp, int output_bit_size);
 };
 
 #endif  // DIGITALDESIGN_CIRCUITS_H

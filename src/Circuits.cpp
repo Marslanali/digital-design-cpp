@@ -66,11 +66,11 @@ char* Circuits::read_inputs_B(std::string input_b) {
   return char_array2;
 }
 
-std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1,
+std::vector<int> Circuits::arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1,
                                                          char* char_array2, int input_a_size, int input_b_size) {
   //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
   // Total wires
-  unsigned int wires[total_wires_];
+  int wires[total_wires_];
 
   // gates index and save them in respective arrays start from here
   for (int k = 0; k <= input_a_size - 1; ++k) {
@@ -128,53 +128,55 @@ std::vector<unsigned int> Circuits::arithmetic_functions(const std::vector<std::
 }
 
 ///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
-void Circuits::display_output(std::vector<unsigned int> wires_temp, int output_bit_size) {
-  if (output_bit_size == 1600 || output_bit_size == 256 || output_bit_size == 512) {
+void Circuits::display_output(std::vector<int> wires_temp, int output_bit_size) {
+//  if (output_bit_size == 1600 || output_bit_size == 256 || output_bit_size == 512) {
     std::cout << std::endl;
     std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-    std::vector<unsigned int> index;
-    int counter = 0;
+  std::cout << std::endl;
+  std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+  std::vector<unsigned int> index;
+  int counter = 0;
 
-    for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l) {
-      index.push_back(l);
-      counter += 1;
-      if (counter >= output_bit_size) break;
-    }
-
-    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it) {
-      std::cout << wires_temp[*it];
-    }
-    std::cout << std::endl;
-    std::cout << std::endl;
-
+  for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l) {
+    index.push_back(l);
+    counter += 1;
+    if (counter >= output_bit_size) break;
   }
 
-  else {
-    std::cout << std::endl;
-    std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-
-    std::vector<unsigned int> index;
-    int counter = 0;
-    int num = 0;
-
-    for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l) {
-      index.push_back(l);
-      counter += 1;
-      if (counter >= output_bit_size) break;
-    }
-
-    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it) {
-      std::cout << wires_temp[*it];
-      if ((num & 7) == 7) {
-        std::cout << "  ";
-      }
-      if ((num & 31) == 31) {
-        std::cout << "\n";
-      }
-
-      num += 1;
-    }
-    std::cout << std::endl;
-    std::cout << std::endl;
+  for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it) {
+    std::cout << wires_temp[*it];
   }
+  std::cout << std::endl;
+  std::cout << std::endl;
+
+//  }
+
+//  else {
+//    std::cout << std::endl;
+//    std::cout << "Output " << output_bit_size << " bits: " << std::endl;
+//
+//    std::vector<unsigned int> index;
+//    int counter = 0;
+//    int num = 0;
+//
+//    for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l) {
+//      index.push_back(l);
+//      counter += 1;
+//      if (counter >= output_bit_size) break;
+//    }
+//
+//    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it) {
+//      std::cout << wires_temp[*it];
+//      if ((num & 7) == 7) {
+//        std::cout << "  ";
+//      }
+//      if ((num & 31) == 31) {
+//        std::cout << "\n";
+//      }
+//
+//      num += 1;
+//    }
+//    std::cout << std::endl;
+//    std::cout << std::endl;
+//  }
 }
