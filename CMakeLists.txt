@@ -23,8 +23,13 @@ add_executable(digitaldesign
         ${PROJECT_SOURCE_DIR}/main.cpp
         ${PROJECT_SOURCE_DIR}/src/Circuits.cpp
         ${PROJECT_SOURCE_DIR}/src/ReadData.cpp
+        ${PROJECT_SOURCE_DIR}/src/conversations.cpp
+        ${PROJECT_SOURCE_DIR}/src/FloatingSimpleTests.cpp
+
         ${PROJECT_SOURCE_DIR}/include/Circuits.h
         ${PROJECT_SOURCE_DIR}/include/ReadData.h
+        ${PROJECT_SOURCE_DIR}/include/conversations.h
+        ${PROJECT_SOURCE_DIR}/include/FloatingSimpleTests.h
         ${PROJECT_SOURCE_DIR}/include/Constants.h
         ${PROJECT_SOURCE_DIR}/include/Exception.h)
 
