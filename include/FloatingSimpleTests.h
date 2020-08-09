@@ -13,6 +13,8 @@ class FloatingTests {
   static void test_fp_sqrt();
   static void test_fp_f2i();
   static void test_fp_i2f();
-};
+  static void test_fp_eq();
+
+  };
 
 #endif  // DIGITALDESIGN_FLOATINGSIMPLETESTS_H

@@ -151,21 +151,50 @@ void FloatingTests::test_fp_f2i() {
 }
 
 void FloatingTests::test_fp_i2f() {
-    std::cout << "\n============ Testing FP-i2f With (double) Operator ============\n";
-    long int int_value1 = 2;
-    auto i2f = (double)(int_value1);  // Round nearest-even rounding
-    std::cout << "\nFP-i2f: " << int_value1 << " = " << i2f << std::endl;
+  std::cout << "\n============ Testing FP-i2f With (double) Operator ============\n";
+  long int int_value1 = -250132100;
+  auto i2f = (double)(int_value1);  // Round nearest-even rounding
+  std::cout << "\nFP-i2f: " << int_value1 << " = " << i2f << std::endl;
 
-    // Double to bits conversion
-    std::string input_a_bits(64, 'x');
-    std::string output_add_bits(64, 'x');
+  // Double to bits conversion
+  std::string input_a_bits(64, 'x');
+  std::string output_add_bits(64, 'x');
 
-    Conversations::long_to_bits(int_value1, input_a_bits);
-    Conversations::double_to_bits(i2f, output_add_bits);
+  Conversations::long_to_bits(int_value1, input_a_bits);
+  Conversations::double_to_bits(i2f, output_add_bits);
 
-    std::cout << "\nInput A (64 bits): \n";
-    Conversations::print_bits(input_a_bits);
+  std::cout << "\nInput A (64 bits): \n";
+  Conversations::print_bits(input_a_bits);
 
-    std::cout << "\nOutput 64 bits: \n";
-    Conversations::print_bits(output_add_bits);
+  std::cout << "\nOutput 64 bits: \n";
+  Conversations::print_bits(output_add_bits);
+}
+
+void FloatingTests::test_fp_eq() {
+  std::cout << "\n============ Testing FP-eq without circuit ============\n";
+  // double value floating points
+  double double_value1 = 2.5625;
+  double double_value2 = 2.5625;
+
+  std::cout << "\nFP-eq: " << double_value1 << " " << double_value2 << std::endl;
+
+  // Double to bits conversion
+  std::string input_a_bits(64, 'x');
+  std::string input_b_bits(64, 'x');
+
+  Conversations::double_to_bits(double_value1, input_a_bits);
+  Conversations::double_to_bits(double_value2, input_b_bits);
+
+  std::cout << "\nInput A (64 bits): \n";
+  Conversations::print_bits(input_a_bits);
+
+  std::cout << "\nInput B (64 bits): \n";
+  Conversations::print_bits(input_b_bits);
+
+  if (double_value1 == double_value2)
+    std::cout << "\nFP-eq output Equal "
+              << "\n";
+  else
+    std::cout << "\nFP-eq are not Equal "
+              << "\n";
 }

@@ -78,11 +78,11 @@ int main(int argc, char **argv) {
 
     FloatingTests::test_fp_i2f();
     std::cout << "================== Testing FP-i2f Circuit ========================" << std::endl;
-    test_arithmetic("../data/IEEE-floating-point-operations/FP-i2f.txt", input_a1, empty, 64);
+    test_arithmetic("../data/IEEE-floating-point-operations/i2f.txt", input_a2, empty, 64);
 
-    //    std::cout << "================== Testing FP-eq Circuit ======================== " << std::endl;
-    //    test_arithmetic("../data/IEEE-floating-point-operations/FP-eq.txt", 192, 128, 128);
-    //
+    FloatingTests::test_fp_eq();
+    std::cout << "================== Testing FP-eq Circuit ======================== " << std::endl;
+    test_arithmetic("../data/IEEE-floating-point-operations/FP-eq.txt", input_a1, input_b1, 64);
 
   }
 
