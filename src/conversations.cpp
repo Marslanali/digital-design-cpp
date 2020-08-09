@@ -5,7 +5,7 @@
 #include "../include/conversations.h"
 
 // bits to double function
-void Conversations::bits_to_double(const std::vector<int> &bits, double &x) {
+void Conversations::bits_to_double(const std::string &bits, double &x) {
   uint8_t *ptr = (uint8_t *)&x;
 
   for (int index = 0; index < 8; index++) {
@@ -31,13 +31,21 @@ void Conversations::double_to_bits(double x, std::string &bits) {
   }
 }
 
+// long to bits conversation
+void Conversations::long_to_bits(unsigned long x, std::string &bits) {
+  for (int index = 0; index < 64; index++) {
+    bits[index] = x & 1;
+    x >>= 1;
+  }
+}
+
 // prints bits
 void Conversations::print_bits(const std::string &bits) {
   for (int i = 0; i < 64; i++) {
     std::cout << int(bits[i]);
-    if (i == 0 || i == 11) {
+    /*if (i == 0 || i == 11) {
       std::cout << " ";
-    }
+    }*/
   }
   std::cout << std::endl;
 }
@@ -52,9 +60,4 @@ void Conversations::test_conversation_all() {
   double_to_bits(double_value, bits);
   std::cout << "\n double to bits: ";
   print_bits(bits);
-
-  //    // Bits to double conversion
-  //    double temp;
-  //    bits_to_double(bits, temp);
-  //    std::cout << "\n bits to double: " << temp << "\n";
 }

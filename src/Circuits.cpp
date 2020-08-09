@@ -17,15 +17,10 @@ void Circuits::display_circuit(const std::vector<std::vector<std::string>>& data
 
   total_num_outputs_ = std::stoi(data_list[2][0]);
   outputs_bits_ = std::stoi(data_list[2][1]);
-
-  std::cout << std::endl;
-  std::cout << std::endl;
 }
 
 // Read inputs A
-char* Circuits::read_inputs_A(std::string input_a) {
-  ////////////////////////////////////////////////// Input Data A //////////////////////////////////////////////////////
-
+char* Circuits::read_inputs_A(const std::string& input_a) {
   // 64 bits input
   input_a_ = input_a;
 
@@ -37,18 +32,16 @@ char* Circuits::read_inputs_A(std::string input_a) {
   // string to char array
   strcpy(char_array1, input_a_.c_str());
 
-  std::cout << "Input A (" << n << " bits): " << std::endl;
-  for (int i = 0; i < n; i++) std::cout << char_array1[i];
-  std::cout << std::endl;
-  std::cout << std::endl;
+  /*std::cout << "Input A (" << n << " bits): " << std::endl;*/
+  /*for (int i = 0; i < n; i++) std::cout << char_array1[i];*/
+  /*std::cout << std::endl;*/
+  /*std::cout << std::endl;*/
 
   return char_array1;
 }
 
 // Read inputs B
-char* Circuits::read_inputs_B(std::string input_b) {
-  ////////////////////////////////////////////////// Input Data B //////////////////////////////////////////////////////
-
+char* Circuits::read_inputs_B(const std::string& input_b) {
   // 64 bits input
   input_b_ = input_b;
 
@@ -60,15 +53,14 @@ char* Circuits::read_inputs_B(std::string input_b) {
   // string to char array
   strcpy(char_array2, input_b_.c_str());
 
-  std::cout << "Input B (" << m << " bits): " << std::endl;
-  for (int i = 0; i < m; i++) std::cout << char_array2[i];
+  /*std::cout << "Input B (" << m << " bits): " << std::endl;*/
+  /*for (int i = 0; i < m; i++) std::cout << char_array2[i];*/
 
   return char_array2;
 }
 
 std::vector<int> Circuits::arithmetic_functions(const std::vector<std::vector<std::string>>& data_list, char* char_array1,
                                                 char* char_array2, int input_a_size, int input_b_size) {
-  //////////////////////////////////////////////// Copy Input A and B ////////////////////////////////////////////////
   // Total wires
   int wires[total_wires_];
 
@@ -89,7 +81,6 @@ std::vector<int> Circuits::arithmetic_functions(const std::vector<std::vector<st
     }
   }
 
-  ////////////////////////////////////////// Arithmetic Function  /////////////////////////////////////////////////////
   // gates index and save them in respective arrays start from here
   for (int k = 4; k < data_list.size(); ++k) {
     // check XOR and AND gates only
@@ -127,15 +118,13 @@ std::vector<int> Circuits::arithmetic_functions(const std::vector<std::vector<st
   return wires_vec_;
 }
 
-///////////////////////////////////////////////// Output Display Func //////////////////////////////////////////////
 void Circuits::display_output(std::vector<int> wires_temp, int output_bit_size) {
-  //  if (output_bit_size == 1600 || output_bit_size == 256 || output_bit_size == 512) {
-  std::cout << std::endl;
   std::cout << "Output " << output_bit_size << " bits: " << std::endl;
   std::vector<unsigned int> index;
   int counter = 0;
 
-  for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l) {
+  for (unsigned int l = total_wires_ - 1; l > 0; --l)
+  /*for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l)*/ {
     index.push_back(l);
     counter += 1;
     if (counter >= output_bit_size) break;
@@ -146,35 +135,4 @@ void Circuits::display_output(std::vector<int> wires_temp, int output_bit_size) 
   }
   std::cout << std::endl;
   std::cout << std::endl;
-
-  //  }
-
-  //  else {
-  //    std::cout << std::endl;
-  //    std::cout << "Output " << output_bit_size << " bits: " << std::endl;
-  //
-  //    std::vector<unsigned int> index;
-  //    int counter = 0;
-  //    int num = 0;
-  //
-  //    for (unsigned int l = total_wires_ - output_bit_size; l <= total_wires_ - 1; ++l) {
-  //      index.push_back(l);
-  //      counter += 1;
-  //      if (counter >= output_bit_size) break;
-  //    }
-  //
-  //    for (std::vector<unsigned int>::iterator it = index.begin(); it != index.end(); ++it) {
-  //      std::cout << wires_temp[*it];
-  //      if ((num & 7) == 7) {
-  //        std::cout << "  ";
-  //      }
-  //      if ((num & 31) == 31) {
-  //        std::cout << "\n";
-  //      }
-  //
-  //      num += 1;
-  //    }
-  //    std::cout << std::endl;
-  //    std::cout << std::endl;
-  //  }
 }

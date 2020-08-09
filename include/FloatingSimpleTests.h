@@ -8,6 +8,11 @@
 class FloatingTests {
  public:
   static void test_fp_add();
+  static void test_fp_mul();
+  static void test_fp_div();
+  static void test_fp_sqrt();
+  static void test_fp_f2i();
+  static void test_fp_i2f();
 };
 
 #endif  // DIGITALDESIGN_FLOATINGSIMPLETESTS_H

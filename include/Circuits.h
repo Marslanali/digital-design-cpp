@@ -45,8 +45,8 @@ class Circuits {
   Circuits(){};
 
   // Read inputs
-  char* read_inputs_A(std::string input_a);
-  char* read_inputs_B(std::string input_b);
+  char* read_inputs_A(const std::string& input_a);
+  char* read_inputs_B(const std::string& input_b);
 
   // print the all circuit data to the console
   void display_circuit(const std::vector<std::vector<std::string>>& data_list);
